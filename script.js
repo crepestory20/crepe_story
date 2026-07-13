@@ -132,6 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Toggle open/close on palette button click
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeDots = document.getElementById('theme-dots');
+    themeToggleBtn.addEventListener('click', () => {
+        themeDots.classList.toggle('open');
+    });
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!document.getElementById('theme-switcher').contains(e.target)) {
+            themeDots.classList.remove('open');
+        }
+    });
+
     // Restore saved theme
     const savedTheme = localStorage.getItem('crepe_story_theme') || 'midnight';
     applyTheme(savedTheme);
