@@ -59,23 +59,59 @@ function renderMenu(category) {
   const grid = document.getElementById('menu-grid');
   if (!grid) return;
   const items = MENU_DATA.filter(i => i.cat === category);
-  grid.innerHTML = items.map(item => `
-    <div class="menu-item-card" data-category="${item.cat}">
-      <div class="item-img-wrapper"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
-      <div class="item-details">
-        <div class="item-header">
-          <h3>${item.name}</h3>
-          <span class="item-price">${item.price}</span>
+  grid.innerHTML = items.map(item => {
+    const hasSizes = item.price.includes('وسط') || item.price.includes('كبير');
+    let orderBtnHtml = '';
+    
+    if (hasSizes) {
+      orderBtnHtml = `
+        <div class="order-buttons-group">
+          <button class="btn-select-order" data-item-ar="${item.name}" data-item-en="${item.eng}" data-size="medium">
+            <span class="lang-ar">وسط <i class="fa-solid fa-plus"></i></span>
+            <span class="lang-en">Medium <i class="fa-solid fa-plus"></i></span>
+          </button>
+          <button class="btn-select-order" data-item-ar="${item.name}" data-item-en="${item.eng}" data-size="large">
+            <span class="lang-ar">كبير <i class="fa-solid fa-plus"></i></span>
+            <span class="lang-en">Large <i class="fa-solid fa-plus"></i></span>
+          </button>
         </div>
-        <p>${item.desc}</p>
+      `;
+    } else {
+      orderBtnHtml = `
         <button class="btn-select-order" data-item-ar="${item.name}" data-item-en="${item.eng}">
           <span class="lang-ar">اطلب <i class="fa-solid fa-plus"></i></span>
           <span class="lang-en">Order <i class="fa-solid fa-plus"></i></span>
         </button>
+      `;
+    }
+
+    return `
+      <div class="menu-item-card" data-category="${item.cat}">
+        <div class="item-img-wrapper"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
+        <div class="item-details">
+          <div class="item-header">
+            <h3>${item.name}</h3>
+            <span class="item-price">${item.price}</span>
+          </div>
+          <p>${item.desc}</p>
+          ${orderBtnHtml}
+        </div>
       </div>
-    </div>`).join('');
+    `;
+  }).join('');
   // Re-bind order buttons after render
   bindOrderButtons();
+}
+
+function setFormSize(size) {
+  const sizeInput = document.getElementById('order-size');
+  if (sizeInput) {
+    sizeInput.value = size;
+  }
+  document.querySelectorAll('.size-type-btn').forEach(btn => {
+    const btnSize = btn.getAttribute('data-size');
+    btn.classList.toggle('active', btnSize === size);
+  });
 }
 
 function bindOrderButtons() {
@@ -87,6 +123,16 @@ function bindOrderButtons() {
         if (sel.options[i].value.includes(itemAr)) { sel.selectedIndex = i; break; }
       }
       document.getElementById('order-qty').value = 1;
+      
+      const clickedSize = btn.getAttribute('data-size');
+      if (clickedSize) {
+        setFormSize(clickedSize);
+      }
+      
+      if (sel) {
+        sel.dispatchEvent(new Event('change'));
+      }
+      
       document.getElementById('order-form-section').scrollIntoView({ behavior:'smooth' });
       const fc = document.querySelector('.form-container');
       fc.style.borderColor = 'var(--primary-color)';
@@ -255,6 +301,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Size type toggle (medium / large)
+    document.querySelectorAll('.size-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.size-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('order-size').value = btn.getAttribute('data-size');
+        });
+    });
+
+    // Show/hide size selection dynamically based on chosen item
+    const orderItemSelect = document.getElementById('order-item');
+    const formGroupSize = document.getElementById('form-group-size');
+    if (orderItemSelect && formGroupSize) {
+        const toggleSizeVisibility = () => {
+            if (orderItemSelect.selectedIndex < 0) return;
+            const selectedText = orderItemSelect.options[orderItemSelect.selectedIndex].text;
+            const hasSizes = selectedText.includes('وسط') || selectedText.includes('كبير') || selectedText.includes('|');
+            if (hasSizes) {
+                formGroupSize.style.display = 'block';
+            } else {
+                formGroupSize.style.display = 'none';
+            }
+        };
+        orderItemSelect.addEventListener('change', toggleSizeVisibility);
+        // Run initially
+        toggleSizeVisibility();
+    }
+
     const whatsappForm = document.getElementById('whatsapp-form');
     
     if (whatsappForm) {
@@ -278,6 +352,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const paymentType = paymentTypeInput ? paymentTypeInput.value : 'cash';
             const paymentTypeAr = paymentType === 'cash' ? '💵 نقدي (كاش)' : '📱 فودافون كاش';
             const paymentTypeEn = paymentType === 'cash' ? '💵 Cash' : '📱 Vodafone Cash';
+
+            const showSize = formGroupSize && formGroupSize.style.display !== 'none';
+            const sizeInput = document.getElementById('order-size');
+            const size = sizeInput ? sizeInput.value : 'medium';
+            const sizeAr = size === 'medium' ? 'وسط' : 'كبير';
+            const sizeEn = size === 'medium' ? 'Medium' : 'Large';
             
             if (!item) {
                 alert(currentLang === 'ar' ? 'يرجى اختيار صنف من قائمة الطعام!' : 'Please select an item from the menu!');
@@ -293,8 +373,11 @@ document.addEventListener('DOMContentLoaded', () => {
                               `👤 *الاسم:* ${name}\n` +
                               `📞 *الهاتف:* ${phone}\n` +
                               `🍽️ *الطلب:* ${item}\n` +
-                              `🔢 *الكمية:* ${qty}\n` +
-                              `📦 *نوع الطلب:* ${orderTypeAr}\n` +
+                              `🔢 *الكمية:* ${qty}\n`;
+                if (showSize) {
+                    messageText += `📐 *الحجم:* ${sizeAr}\n`;
+                }
+                messageText += `📦 *نوع الطلب:* ${orderTypeAr}\n` +
                               `💳 *طريقة الدفع:* ${paymentTypeAr}\n`;
                 if (notes) {
                     messageText += `✍️ *ملاحظات إضافية:* ${notes}\n`;
@@ -307,8 +390,11 @@ document.addEventListener('DOMContentLoaded', () => {
                               `👤 *Name:* ${name}\n` +
                               `📞 *Phone:* ${phone}\n` +
                               `🍽️ *Dish:* ${item}\n` +
-                              `🔢 *Quantity:* ${qty}\n` +
-                              `📦 *Order Type:* ${orderTypeEn}\n` +
+                              `🔢 *Quantity:* ${qty}\n`;
+                if (showSize) {
+                    messageText += `📐 *Size:* ${sizeEn}\n`;
+                }
+                messageText += `📦 *Order Type:* ${orderTypeEn}\n` +
                               `💳 *Payment Method:* ${paymentTypeEn}\n`;
                 if (notes) {
                     messageText += `✍️ *Special Requests:* ${notes}\n`;

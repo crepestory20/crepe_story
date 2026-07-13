@@ -275,7 +275,25 @@
                         </div>
                     </div>
 
-                    <!-- نوع الطلب: أوردر أو استلام -->
+                    <!-- حجم الطلب: وسط أو كبير -->
+                    <div class="form-group" id="form-group-size" style="display: none;">
+                        <label>
+                            <span class="lang-ar">الحجم المطلوب</span>
+                            <span class="lang-en">Selected Size</span>
+                        </label>
+                        <div class="size-type-toggle">
+                            <button type="button" class="size-type-btn active" data-size="medium" id="btn-size-medium">
+                                <span class="lang-ar">وسط</span>
+                                <span class="lang-en">Medium</span>
+                            </button>
+                            <button type="button" class="size-type-btn" data-size="large" id="btn-size-large">
+                                <span class="lang-ar">كبير</span>
+                                <span class="lang-en">Large</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="order-size" value="medium">
+                    </div>
+
                     <div class="form-group">
                         <label>
                             <span class="lang-ar">نوع الطلب</span>

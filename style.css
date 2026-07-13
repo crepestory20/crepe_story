@@ -655,6 +655,21 @@ body[data-lang="en"] .item-img-wrapper {
     transform: scale(1.03);
 }
 
+.order-buttons-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.order-buttons-group .btn-select-order {
+    flex: 1;
+    margin-top: 0;
+    justify-content: center;
+    padding: 6px 4px;
+}
+
+
 /* ==========================================
    WHATSAPP PRE-ORDER FORM
    ========================================== */
@@ -1060,17 +1075,19 @@ body[data-lang="en"] .social-card:hover .card-arrow {
 }
 
 /* ==========================================
-   ORDER & PAYMENT TYPE TOGGLE (DELIVERY / PICKUP / PAYMENT)
+   ORDER, PAYMENT & SIZE TYPE TOGGLE (DELIVERY / PICKUP / PAYMENT / SIZE)
    ========================================== */
 .order-type-toggle,
-.payment-type-toggle {
+.payment-type-toggle,
+.size-type-toggle {
     display: flex;
     gap: 10px;
     width: 100%;
 }
 
 .order-type-btn,
-.payment-type-btn {
+.payment-type-btn,
+.size-type-btn {
     flex: 1;
     display: flex;
     align-items: center;
@@ -1089,18 +1106,21 @@ body[data-lang="en"] .social-card:hover .card-arrow {
 }
 
 .order-type-btn i,
-.payment-type-btn i {
+.payment-type-btn i,
+.size-type-btn i {
     font-size: 1rem;
 }
 
 .order-type-btn:hover,
-.payment-type-btn:hover {
+.payment-type-btn:hover,
+.size-type-btn:hover {
     border-color: rgba(197, 160, 89, 0.35);
     color: var(--secondary-color);
 }
 
 .order-type-btn.active,
-.payment-type-btn.active {
+.payment-type-btn.active,
+.size-type-btn.active {
     background: linear-gradient(135deg, rgba(197,160,89,0.18), rgba(197,160,89,0.08));
     border-color: var(--primary-color);
     color: var(--primary-color);
