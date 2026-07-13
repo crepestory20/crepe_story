@@ -99,6 +99,44 @@ function bindOrderButtons() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
+    // 0. THEME COLOR SWITCHER
+    // ==========================================
+    const THEMES = {
+        midnight: { bg: '#0B1215', glow1: 'rgba(197,160,89,0.22)', glow2: '#172F3A', glow3: 'rgba(197,160,89,0.1)' },
+        ocean:    { bg: '#0D1B2A', glow1: 'rgba(30,90,160,0.25)',  glow2: '#0A2240', glow3: 'rgba(197,160,89,0.1)' },
+        forest:   { bg: '#0A1A0F', glow1: 'rgba(30,120,60,0.25)',  glow2: '#102010', glow3: 'rgba(197,160,89,0.1)' },
+        espresso: { bg: '#1A0F0A', glow1: 'rgba(160,80,30,0.25)',  glow2: '#2C1810', glow3: 'rgba(197,160,89,0.1)' },
+        plum:     { bg: '#160D24', glow1: 'rgba(120,40,180,0.25)', glow2: '#1E0F2E', glow3: 'rgba(197,160,89,0.1)' },
+        slate:    { bg: '#141820', glow1: 'rgba(80,100,140,0.22)', glow2: '#1C2028', glow3: 'rgba(197,160,89,0.1)' },
+    };
+
+    const applyTheme = (themeName) => {
+        const t = THEMES[themeName];
+        if (!t) return;
+        const root = document.documentElement;
+        root.style.setProperty('--bg-color', t.bg);
+        document.body.style.backgroundColor = t.bg;
+        document.documentElement.style.backgroundColor = t.bg;
+        // Save preference
+        localStorage.setItem('crepe_story_theme', themeName);
+        // Update active dot
+        document.querySelectorAll('.theme-dot').forEach(d => {
+            d.classList.toggle('active', d.getAttribute('data-theme') === themeName);
+        });
+    };
+
+    // Bind theme dots
+    document.querySelectorAll('.theme-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            applyTheme(dot.getAttribute('data-theme'));
+        });
+    });
+
+    // Restore saved theme
+    const savedTheme = localStorage.getItem('crepe_story_theme') || 'midnight';
+    applyTheme(savedTheme);
+
+    // ==========================================
     // 1. LANGUAGE SWITCHING SYSTEM
     // ==========================================
     const langBtn = document.getElementById('lang-btn');
