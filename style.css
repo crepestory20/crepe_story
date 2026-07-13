@@ -1060,15 +1060,17 @@ body[data-lang="en"] .social-card:hover .card-arrow {
 }
 
 /* ==========================================
-   ORDER TYPE TOGGLE (DELIVERY / PICKUP)
+   ORDER & PAYMENT TYPE TOGGLE (DELIVERY / PICKUP / PAYMENT)
    ========================================== */
-.order-type-toggle {
+.order-type-toggle,
+.payment-type-toggle {
     display: flex;
     gap: 10px;
     width: 100%;
 }
 
-.order-type-btn {
+.order-type-btn,
+.payment-type-btn {
     flex: 1;
     display: flex;
     align-items: center;
@@ -1086,16 +1088,19 @@ body[data-lang="en"] .social-card:hover .card-arrow {
     font-family: var(--font-ar);
 }
 
-.order-type-btn i {
+.order-type-btn i,
+.payment-type-btn i {
     font-size: 1rem;
 }
 
-.order-type-btn:hover {
+.order-type-btn:hover,
+.payment-type-btn:hover {
     border-color: rgba(197, 160, 89, 0.35);
     color: var(--secondary-color);
 }
 
-.order-type-btn.active {
+.order-type-btn.active,
+.payment-type-btn.active {
     background: linear-gradient(135deg, rgba(197,160,89,0.18), rgba(197,160,89,0.08));
     border-color: var(--primary-color);
     color: var(--primary-color);

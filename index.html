@@ -296,6 +296,27 @@
                         <input type="hidden" id="order-type" value="delivery">
                     </div>
 
+                    <!-- طريقة الدفع: نقدي أو فودافون كاش -->
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-ar">طريقة الدفع</span>
+                            <span class="lang-en">Payment Method</span>
+                        </label>
+                        <div class="payment-type-toggle">
+                            <button type="button" class="payment-type-btn active" data-pay="cash" id="btn-cash">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <span class="lang-ar">نقدي (كاش)</span>
+                                <span class="lang-en">Cash</span>
+                            </button>
+                            <button type="button" class="payment-type-btn" data-pay="vodafone" id="btn-vodafone">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span class="lang-ar">فودافون كاش</span>
+                                <span class="lang-en">Vodafone Cash</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="payment-type" value="cash">
+                    </div>
+
                     <div class="form-group">
                         <label for="order-notes">
                             <span class="lang-ar">ملاحظات إضافية</span>

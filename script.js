@@ -246,6 +246,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Payment type toggle (cash / vodafone)
+    document.querySelectorAll('.payment-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.payment-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('payment-type').value = btn.getAttribute('data-pay');
+        });
+    });
+
     const whatsappForm = document.getElementById('whatsapp-form');
     
     if (whatsappForm) {
@@ -264,6 +273,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const orderType = orderTypeInput ? orderTypeInput.value : 'delivery';
             const orderTypeAr = orderType === 'delivery' ? '🏍️ توصيل (أوردر)' : '🏪 استلام من المحل';
             const orderTypeEn = orderType === 'delivery' ? '🏍️ Delivery' : '🏪 Pickup';
+
+            const paymentTypeInput = document.getElementById('payment-type');
+            const paymentType = paymentTypeInput ? paymentTypeInput.value : 'cash';
+            const paymentTypeAr = paymentType === 'cash' ? '💵 نقدي (كاش)' : '📱 فودافون كاش';
+            const paymentTypeEn = paymentType === 'cash' ? '💵 Cash' : '📱 Vodafone Cash';
             
             if (!item) {
                 alert(currentLang === 'ar' ? 'يرجى اختيار صنف من قائمة الطعام!' : 'Please select an item from the menu!');
@@ -280,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
                               `📞 *الهاتف:* ${phone}\n` +
                               `🍽️ *الطلب:* ${item}\n` +
                               `🔢 *الكمية:* ${qty}\n` +
-                              `📦 *نوع الطلب:* ${orderTypeAr}\n`;
+                              `📦 *نوع الطلب:* ${orderTypeAr}\n` +
+                              `💳 *طريقة الدفع:* ${paymentTypeAr}\n`;
                 if (notes) {
                     messageText += `✍️ *ملاحظات إضافية:* ${notes}\n`;
                 }
@@ -293,7 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
                               `📞 *Phone:* ${phone}\n` +
                               `🍽️ *Dish:* ${item}\n` +
                               `🔢 *Quantity:* ${qty}\n` +
-                              `📦 *Order Type:* ${orderTypeEn}\n`;
+                              `📦 *Order Type:* ${orderTypeEn}\n` +
+                              `💳 *Payment Method:* ${paymentTypeEn}\n`;
                 if (notes) {
                     messageText += `✍️ *Special Requests:* ${notes}\n`;
                 }
