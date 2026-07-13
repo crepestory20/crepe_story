@@ -1060,6 +1060,49 @@ body[data-lang="en"] .social-card:hover .card-arrow {
 }
 
 /* ==========================================
+   ORDER TYPE TOGGLE (DELIVERY / PICKUP)
+   ========================================== */
+.order-type-toggle {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.order-type-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 10px;
+    border-radius: 12px;
+    border: 1.5px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-gray);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-ar);
+}
+
+.order-type-btn i {
+    font-size: 1rem;
+}
+
+.order-type-btn:hover {
+    border-color: rgba(197, 160, 89, 0.35);
+    color: var(--secondary-color);
+}
+
+.order-type-btn.active {
+    background: linear-gradient(135deg, rgba(197,160,89,0.18), rgba(197,160,89,0.08));
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 14px rgba(197, 160, 89, 0.2);
+}
+
+/* ==========================================
    ANIMATIONS & EFFECTS
    ========================================== */
 @keyframes floatLogo {

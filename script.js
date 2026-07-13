@@ -236,6 +236,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 4. WHATSAPP FORM SUBMISSION
     // ==========================================
+
+    // Order type toggle (delivery / pickup)
+    document.querySelectorAll('.order-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('order-type').value = btn.getAttribute('data-type');
+        });
+    });
+
     const whatsappForm = document.getElementById('whatsapp-form');
     
     if (whatsappForm) {
@@ -250,6 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const item = orderItemSelect ? orderItemSelect.value : '';
             const qty = orderQtyInput ? orderQtyInput.value : '1';
+            const orderTypeInput = document.getElementById('order-type');
+            const orderType = orderTypeInput ? orderTypeInput.value : 'delivery';
+            const orderTypeAr = orderType === 'delivery' ? '🏍️ توصيل (أوردر)' : '🏪 استلام من المحل';
+            const orderTypeEn = orderType === 'delivery' ? '🏍️ Delivery' : '🏪 Pickup';
             
             if (!item) {
                 alert(currentLang === 'ar' ? 'يرجى اختيار صنف من قائمة الطعام!' : 'Please select an item from the menu!');
@@ -265,7 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
                               `👤 *الاسم:* ${name}\n` +
                               `📞 *الهاتف:* ${phone}\n` +
                               `🍽️ *الطلب:* ${item}\n` +
-                              `🔢 *الكمية:* ${qty}\n`;
+                              `🔢 *الكمية:* ${qty}\n` +
+                              `📦 *نوع الطلب:* ${orderTypeAr}\n`;
                 if (notes) {
                     messageText += `✍️ *ملاحظات إضافية:* ${notes}\n`;
                 }
@@ -277,7 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
                               `👤 *Name:* ${name}\n` +
                               `📞 *Phone:* ${phone}\n` +
                               `🍽️ *Dish:* ${item}\n` +
-                              `🔢 *Quantity:* ${qty}\n`;
+                              `🔢 *Quantity:* ${qty}\n` +
+                              `📦 *Order Type:* ${orderTypeEn}\n`;
                 if (notes) {
                     messageText += `✍️ *Special Requests:* ${notes}\n`;
                 }

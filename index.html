@@ -275,6 +275,27 @@
                         </div>
                     </div>
 
+                    <!-- نوع الطلب: أوردر أو استلام -->
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-ar">نوع الطلب</span>
+                            <span class="lang-en">Order Type</span>
+                        </label>
+                        <div class="order-type-toggle">
+                            <button type="button" class="order-type-btn active" data-type="delivery" id="btn-delivery">
+                                <i class="fa-solid fa-motorcycle"></i>
+                                <span class="lang-ar">توصيل (أوردر)</span>
+                                <span class="lang-en">Delivery</span>
+                            </button>
+                            <button type="button" class="order-type-btn" data-type="pickup" id="btn-pickup">
+                                <i class="fa-solid fa-store"></i>
+                                <span class="lang-ar">استلام من المحل</span>
+                                <span class="lang-en">Pickup</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="order-type" value="delivery">
+                    </div>
+
                     <div class="form-group">
                         <label for="order-notes">
                             <span class="lang-ar">ملاحظات إضافية</span>
