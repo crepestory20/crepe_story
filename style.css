@@ -77,6 +77,11 @@ body[data-lang="en"] .card-arrow i {
 html {
     scroll-behavior: smooth;
     background-color: var(--bg-color);
+    /* Lock font scaling on mobile */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-size: 16px;
 }
 
 body {
@@ -88,6 +93,8 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
+    /* Prevent double-tap zoom on mobile */
+    touch-action: manipulation;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -97,6 +104,8 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
     color: inherit;
+    /* Prevent double-tap zoom on links */
+    touch-action: manipulation;
 }
 
 .font-en {
