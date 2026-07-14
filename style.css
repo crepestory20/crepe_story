@@ -437,29 +437,120 @@ body[data-lang="en"] .theme-dots {
     letter-spacing: 1px;
 }
 
+/* المستطيل الذهبي للعناوين */
+.section-title-gold {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #C5A059 0%, #e8c97a 40%, #C5A059 70%, #a07c30 100%);
+    color: #ffffff !important;
+    padding: 16px 28px;
+    border-radius: 18px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(197, 160, 89, 0.45), 0 2px 8px rgba(0,0,0,0.3);
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title-gold::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: goldShine 3s ease-in-out infinite;
+}
+
+@keyframes goldShine {
+    0%   { left: -75%; }
+    100% { left: 125%; }
+}
+
+.section-title-gold span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* مستطيل ذهبي حول زر اطلب الآن */
+.btn-order-now-wrapper {
+    padding: 5px;
+    border-radius: 55px;
+    background: linear-gradient(135deg, #C5A059 0%, #e8c97a 50%, #C5A059 100%);
+    background-size: 200% 200%;
+    animation: goldPulse 3s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(197, 160, 89, 0.5);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+}
+
+@keyframes goldPulse {
+    0%, 100% { background-position: 0% 50%; box-shadow: 0 4px 20px rgba(197, 160, 89, 0.5); }
+    50%       { background-position: 100% 50%; box-shadow: 0 4px 30px rgba(197, 160, 89, 0.8); }
+}
+
+.btn-order-now-wrapper .btn-order-now {
+    background: #0b1215;
+    color: #ffffff;
+    border: none;
+    max-width: 100%;
+    width: 100%;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.btn-order-now-wrapper .btn-order-now:hover {
+    background: #0f1c21;
+    transform: none;
+    box-shadow: none;
+}
+
 .offer-container {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
+/* المستطيل المتغيّر الألوان */
+.offer-card-wrapper {
+    width: 100%;
+    padding: 4px;
+    border-radius: 28px;
+    position: relative;
+    background: linear-gradient(90deg, #ff416c, #ff9a00, #36d1dc, #1fa2ff, #a855f7, #ff416c);
+    background-size: 300% 300%;
+    animation: borderColorCycle 4s linear infinite;
+    box-shadow: 0 0 32px rgba(255, 100, 100, 0.3);
+}
+
+@keyframes borderColorCycle {
+    0%   { background-position: 0% 50%;   box-shadow: 0 0 30px rgba(255, 65, 108, 0.5); }
+    17%  { background-position: 50% 50%;  box-shadow: 0 0 30px rgba(255, 154, 0, 0.5); }
+    33%  { background-position: 100% 50%; box-shadow: 0 0 30px rgba(54, 209, 220, 0.5); }
+    50%  { background-position: 100% 0%;  box-shadow: 0 0 30px rgba(31, 162, 255, 0.5); }
+    67%  { background-position: 50% 0%;   box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
+    83%  { background-position: 0% 0%;    box-shadow: 0 0 30px rgba(255, 65, 108, 0.5); }
+    100% { background-position: 0% 50%;   box-shadow: 0 0 30px rgba(255, 65, 108, 0.5); }
+}
+
 .offer-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: #0d1a1e;
     border-radius: 24px;
     overflow: hidden;
     position: relative;
-    box-shadow: var(--card-shadow);
     transition: var(--transition-smooth);
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.offer-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--glass-border-hover);
-    box-shadow: 0 15px 45px rgba(197, 160, 89, 0.15);
+.offer-card-wrapper:hover .offer-card {
+    transform: scale(0.995);
 }
 
 .offer-badge {
@@ -490,7 +581,7 @@ body[data-lang="en"] .offer-badge {
     transition: var(--transition-smooth);
 }
 
-.offer-card:hover .offer-img {
+.offer-card-wrapper:hover .offer-img {
     transform: scale(1.01);
 }
 
@@ -498,9 +589,9 @@ body[data-lang="en"] .offer-badge {
     padding: 24px;
     display: flex;
     justify-content: center;
-    background: rgba(11, 18, 21, 0.4);
+    background: rgba(11, 18, 21, 0.6);
     backdrop-filter: blur(8px);
-    border-top: 1px solid var(--glass-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .btn-order-now {
