@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => { fc.style.borderColor = ''; fc.style.boxShadow = ''; }, 1200);
                 }
             }, 500);
+            localStorage.removeItem('selectedMenuItem');
         }
-        localStorage.removeItem('selectedMenuItem');
     }
 });
