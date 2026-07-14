@@ -861,11 +861,11 @@ body[data-lang="en"] .item-img-wrapper {
 
 
 /* ==========================================
-   WHATSAPP PRE-ORDER FORM
+   WHATSAPP PRE-ORDER FORM — MOBILE FIRST
    ========================================== */
 .order-form-section {
     width: 100%;
-    margin-bottom: 56px;
+    margin-bottom: 40px;
 }
 
 .form-container {
@@ -874,92 +874,152 @@ body[data-lang="en"] .item-img-wrapper {
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-radius: 24px;
-    padding: 30px 24px;
+    border-radius: 20px;
+    padding: 20px 16px;
     box-shadow: var(--card-shadow);
 }
 
 .whatsapp-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
+/* Row: item select + qty side by side */
 .form-row {
     display: flex;
-    gap: 16px;
+    gap: 10px;
+    align-items: flex-start;
 }
-
-.flex-1 { flex: 1; }
+.flex-1 { flex: 1; min-width: 70px; }
 .flex-2 { flex: 2; }
 
-@media (max-width: 480px) {
-    .form-row {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
 .form-group label {
-    font-size: 0.88rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 700;
     color: var(--secondary-color);
+    letter-spacing: 0.02em;
 }
 
-.form-group input, 
-.form-group select, 
+.form-group input,
+.form-group select,
 .form-group textarea {
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--text-white);
-    padding: 14px 16px;
-    font-size: 0.92rem;
+    padding: 12px 13px;
+    font-size: 0.88rem;
     transition: var(--transition-smooth);
     outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 body[data-lang="ar"] .form-group input,
 body[data-lang="ar"] .form-group select,
 body[data-lang="ar"] .form-group textarea {
     font-family: var(--font-ar);
+    direction: rtl;
 }
 
 body[data-lang="en"] .form-group input,
 body[data-lang="en"] .form-group select,
 body[data-lang="en"] .form-group textarea {
     font-family: var(--font-en);
+    direction: ltr;
 }
 
-.form-group input:focus, 
-.form-group select:focus, 
+.form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.18);
 }
 
-/* Custom styling for select option values dark background */
 .form-group select option {
     background: var(--bg-color);
     color: var(--text-white);
 }
 
+.form-group textarea {
+    resize: none;
+    min-height: 70px;
+    line-height: 1.5;
+}
+
+/* ===== Toggle Buttons: Order Type, Payment, Size ===== */
+.order-type-toggle,
+.payment-type-toggle,
+.size-type-toggle {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.order-type-btn,
+.payment-type-btn,
+.size-type-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1.5px solid var(--glass-border);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-gray);
+    font-family: var(--font-ar);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.order-type-btn i,
+.payment-type-btn i {
+    font-size: 0.85rem;
+}
+
+.order-type-btn.active,
+.payment-type-btn.active,
+.size-type-btn.active {
+    background: linear-gradient(135deg, rgba(197,160,89,0.22) 0%, rgba(197,160,89,0.08) 100%);
+    border-color: var(--primary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 0 10px rgba(197,160,89,0.2);
+}
+
+.order-type-btn:hover:not(.active),
+.payment-type-btn:hover:not(.active),
+.size-type-btn:hover:not(.active) {
+    border-color: rgba(197,160,89,0.4);
+    color: var(--text-white);
+}
+
+/* ===== Submit Button ===== */
 .btn-submit-order {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 16px;
-    font-size: 1.05rem;
-    font-weight: 700;
+    padding: 15px 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: var(--font-ar);
     color: #0b1215;
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     border: none;
@@ -967,11 +1027,44 @@ body[data-lang="en"] .form-group textarea {
     cursor: pointer;
     box-shadow: var(--glow-shadow);
     transition: var(--transition-smooth);
+    margin-top: 4px;
 }
 
-.btn-submit-order:hover {
+.btn-submit-order i {
+    font-size: 1.2rem;
+}
+
+.btn-submit-order:hover,
+.btn-submit-order:active {
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(197, 160, 89, 0.45);
+    box-shadow: 0 0 28px rgba(197, 160, 89, 0.5);
+}
+
+/* Mobile tweaks for form */
+@media (max-width: 400px) {
+    .form-container {
+        padding: 16px 12px;
+    }
+    .whatsapp-form {
+        gap: 14px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 11px 11px;
+        font-size: 0.84rem;
+    }
+    .order-type-btn,
+    .payment-type-btn,
+    .size-type-btn {
+        font-size: 0.75rem;
+        padding: 9px 4px;
+        gap: 4px;
+    }
+    .btn-submit-order {
+        font-size: 0.95rem;
+        padding: 14px;
+    }
 }
 
 /* ==========================================
