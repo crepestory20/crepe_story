@@ -5,27 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="عروض مطعم CRÊPE STORY - استمتع بأقوى العروض الخاصة للخميس والجمعة.">
     <title>CRÊPE STORY | عروض الخميس والجمعة</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <style>
         .offers-page-container {
-            max-width: 600px;
+            max-width: 560px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 16px 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            justify-content: center;
         }
         .back-btn-container {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             width: 100%;
             display: flex;
             justify-content: flex-start;
@@ -34,29 +30,94 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-white);
             text-decoration: none;
             font-weight: 700;
+            font-size: 0.9rem;
             transition: var(--transition-smooth);
             box-shadow: var(--card-shadow);
         }
         .btn-back:hover {
             background: var(--glass-border-hover);
-            transform: translateX(-5px);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+            transform: translateX(-4px);
         }
-        body[dir="ltr"] .btn-back:hover {
-            transform: translateX(5px);
+
+        /* ===== Offer Cards ===== */
+        .offers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            width: 100%;
         }
-        body[dir="rtl"] .btn-back i {
-            transform: rotate(0deg);
+        .offer-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        body[dir="ltr"] .btn-back i {
-            transform: rotate(180deg);
+        .offer-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(197,160,89,0.25);
+        }
+        .offer-item-img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+        .offer-item-footer {
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(197,160,89,0.08) 0%, rgba(197,160,89,0.03) 100%);
+            border-top: 1px solid var(--glass-border);
+        }
+        .btn-offer-order {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #c5a059 0%, #f0d080 50%, #c5a059 100%);
+            color: #0B1215;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(197,160,89,0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-offer-order:hover, .btn-offer-order:active {
+            transform: scale(1.03);
+            box-shadow: 0 6px 28px rgba(197,160,89,0.6);
+        }
+        .btn-offer-order i {
+            font-size: 1.2rem;
+        }
+
+        /* Section title */
+        .offers-page-title {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            background: linear-gradient(135deg, #c5a059, #f0d080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 22px;
         }
     </style>
 </head>
@@ -96,30 +157,60 @@
             </a>
         </div>
 
-        <!-- Thursday & Friday Offers Card -->
-        <section class="offers-section reveal active" style="opacity: 1; transform: translateY(0); width: 100%;">
-            <h2 class="section-title section-title-gold">
-                <span class="lang-ar">عروض الخميس والجمعه 🔥</span>
-                <span class="lang-en">Thursday &amp; Friday Offers 🔥</span>
-            </h2>
-            <div class="offer-container">
-                <div class="offer-card-wrapper">
-                    <div class="offer-card">
-                        <div class="offer-badge lang-ar">عرض خاص ⚡</div>
-                        <div class="offer-badge lang-en">Special Offer ⚡</div>
-                        <img src="assets/offer.png" alt="عروض الخميس والجمعة" class="offer-img">
-                        <div class="offer-action">
-                            <div class="btn-order-now-wrapper">
-                                <a href="menu.html" class="btn-order-now btn-glow">
-                                    <span class="lang-ar">اطلب الآن <i class="fa-solid fa-utensils"></i></span>
-                                    <span class="lang-en">Order Now <i class="fa-solid fa-utensils"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Page Title -->
+        <h1 class="offers-page-title">
+            <span class="lang-ar">عروض الخميس والجمعة 🔥</span>
+            <span class="lang-en">Thursday & Friday Offers 🔥</span>
+        </h1>
+
+        <!-- All Offers -->
+        <div class="offers-list">
+
+            <!-- Offer 1: بوكس العيلة -->
+            <div class="offer-item">
+                <img src="assets/offer_family.jpg" alt="بوكس العيلة - 5 كريب كبير + بطاطس + بيبسي 1 لتر" class="offer-item-img" onerror="this.style.display='none'">
+                <div class="offer-item-footer">
+                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-family">
+                        <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
+                    </a>
                 </div>
             </div>
-        </section>
+
+            <!-- Offer 2: أي أوردر فوق 250 -->
+            <div class="offer-item">
+                <img src="assets/offer_order250.jpg" alt="أي أوردر فوق 250 جنيه - رسمة حنة ورسم على الوش هدية" class="offer-item-img" onerror="this.style.display='none'">
+                <div class="offer-item-footer">
+                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-250">
+                        <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 3: عرض الشلة -->
+            <div class="offer-item">
+                <img src="assets/offer_shella.jpg" alt="عرض الشلة - 4 كريب كبير + 4 بيبسي + بطاطس + وافل نوتيلا هدية - 499 جنيه" class="offer-item-img" onerror="this.style.display='none'">
+                <div class="offer-item-footer">
+                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-shella">
+                        <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 4: 2 كريب كبير -->
+            <div class="offer-item">
+                <img src="assets/offer_2crepe.jpg" alt="اطلب 2 كريب كبير من اختيارك وخذ وافل هدية" class="offer-item-img" onerror="this.style.display='none'">
+                <div class="offer-item-footer">
+                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-2crepe">
+                        <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
+                    </a>
+                </div>
+            </div>
+
+        </div><!-- /offers-list -->
     </div>
 
     <script src="script.js?v=2"></script>
