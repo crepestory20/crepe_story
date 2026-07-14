@@ -519,6 +519,7 @@ body[data-lang="en"] .theme-dots {
 /* المستطيل المتغيّر الألوان */
 .offer-card-wrapper {
     width: 100%;
+    max-width: 420px;
     padding: 4px;
     border-radius: 28px;
     position: relative;
