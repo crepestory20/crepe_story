@@ -440,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 7. CARD CLICK RIPPLE EFFECT
     // ==========================================
-    const rippleElements = document.querySelectorAll('.social-card, .btn-order, .btn-submit-order, .tab-btn');
+    const rippleElements = document.querySelectorAll('.social-card, .btn-order, .btn-order-now, .btn-submit-order, .tab-btn');
     
     rippleElements.forEach(el => {
         el.addEventListener('click', function(e) {
