@@ -87,13 +87,11 @@ function renderMenu(category) {
 
     return `
       <div class="menu-item-card" data-category="${item.cat}">
-        <div class="item-img-wrapper"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
+        <div class="item-img-wrapper"><img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'"></div>
         <div class="item-details">
-          <div class="item-header">
-            <h3>${item.name}</h3>
-            <span class="item-price">${item.price}</span>
-          </div>
-          <p>${item.desc}</p>
+          <h3 class="item-name">${item.name}</h3>
+          <span class="item-price">${item.price}</span>
+          <p class="item-desc">${item.desc}</p>
           ${orderBtnHtml}
         </div>
       </div>
