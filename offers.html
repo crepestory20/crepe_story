@@ -170,10 +170,10 @@
             <div class="offer-item">
                 <img src="assets/offer_family.jpg" alt="بوكس العيلة - 5 كريب كبير + بطاطس + بيبسي 1 لتر" class="offer-item-img" onerror="this.style.display='none'">
                 <div class="offer-item-footer">
-                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-family">
+                    <button class="btn-offer-order btn-glow" id="btn-order-family" onclick="orderOffer('بوكس العيلة')">
                         <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
                         <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -181,10 +181,10 @@
             <div class="offer-item">
                 <img src="assets/offer_order250.jpg" alt="أي أوردر فوق 250 جنيه - رسمة حنة ورسم على الوش هدية" class="offer-item-img" onerror="this.style.display='none'">
                 <div class="offer-item-footer">
-                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-250">
+                    <button class="btn-offer-order btn-glow" id="btn-order-250" onclick="orderOffer('أوردر فوق 250')">
                         <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
                         <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -192,10 +192,10 @@
             <div class="offer-item">
                 <img src="assets/offer_shella.jpg" alt="عرض الشلة - 4 كريب كبير + 4 بيبسي + بطاطس + وافل نوتيلا هدية - 499 جنيه" class="offer-item-img" onerror="this.style.display='none'">
                 <div class="offer-item-footer">
-                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-shella">
+                    <button class="btn-offer-order btn-glow" id="btn-order-shella" onclick="orderOffer('عرض الشلة')">
                         <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
                         <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -203,15 +203,22 @@
             <div class="offer-item">
                 <img src="assets/offer_2crepe.jpg" alt="اطلب 2 كريب كبير من اختيارك وخذ وافل هدية" class="offer-item-img" onerror="this.style.display='none'">
                 <div class="offer-item-footer">
-                    <a href="order.html" class="btn-offer-order btn-glow" id="btn-order-2crepe">
+                    <button class="btn-offer-order btn-glow" id="btn-order-2crepe" onclick="orderOffer('2 كريب كبير')">
                         <span class="lang-ar">اطلب الآن <i class="fa-brands fa-whatsapp"></i></span>
                         <span class="lang-en">Order Now <i class="fa-brands fa-whatsapp"></i></span>
-                    </a>
+                    </button>
                 </div>
             </div>
 
         </div><!-- /offers-list -->
     </div>
+
+    <script>
+        function orderOffer(offerName) {
+            localStorage.setItem('selectedMenuItem', offerName);
+            window.location.href = 'order.html';
+        }
+    </script>
 
     <script src="script.js?v=2"></script>
 </body>
