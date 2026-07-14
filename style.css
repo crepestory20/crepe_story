@@ -725,7 +725,6 @@ body[data-lang="en"] .offer-badge {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     width: 100%;
-    perspective: 900px;
 }
 
 .menu-item-card {
@@ -740,38 +739,13 @@ body[data-lang="en"] .offer-badge {
     padding: 10px;
     gap: 8px;
     box-shadow: var(--card-shadow);
-    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.2s ease;
+    transition: var(--transition-smooth);
     text-align: center;
-    transform-style: preserve-3d;
-    will-change: transform;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-/* golden shimmer overlay that follows mouse cursor */
-.menu-item-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(
-        circle at var(--shine-x, 50%) var(--shine-y, 50%),
-        rgba(197,160,89,0.22) 0%,
-        transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    pointer-events: none;
 }
 
 .menu-item-card:hover {
-    border-color: rgba(197, 160, 89, 0.55);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 20px rgba(197,160,89,0.18);
-}
-
-.menu-item-card:hover::after {
-    opacity: 1;
+    transform: translateY(-4px);
+    border-color: var(--glass-border-hover);
 }
 
 .item-img-wrapper {

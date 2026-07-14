@@ -99,41 +99,6 @@ function renderMenu(category) {
   }).join('');
   // Re-bind order buttons after render
   bindOrderButtons();
-  // Re-bind 3D tilt effect after render
-  bindTiltEffect();
-}
-
-function bindTiltEffect() {
-  // Skip on touch-only devices to preserve mobile performance
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  document.querySelectorAll('.menu-item-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;   // 0 → width
-      const y = e.clientY - rect.top;    // 0 → height
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-
-      // Max tilt angle in degrees
-      const maxTilt = 14;
-      const rotateY =  ((x - cx) / cx) * maxTilt;
-      const rotateX = -((y - cy) / cy) * maxTilt;
-
-      card.style.transform =
-        `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`;
-
-      // Move shimmer to cursor position
-      const pctX = (x / rect.width)  * 100;
-      const pctY = (y / rect.height) * 100;
-      card.style.setProperty('--shine-x', `${pctX}%`);
-      card.style.setProperty('--shine-y', `${pctY}%`);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
 }
 
 function setFormSize(size) {
