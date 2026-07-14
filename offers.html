@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="عروض مطعم CRÊPE STORY - استمتع بأقوى العروض الخاصة للخميس والجمعة.">
+    <title>CRÊPE STORY | عروض الخميس والجمعة</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .offers-page-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+        .back-btn-container {
+            margin-bottom: 24px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            box-shadow: var(--card-shadow);
+        }
+        .btn-back:hover {
+            background: var(--glass-border-hover);
+            transform: translateX(-5px);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+        }
+        body[dir="ltr"] .btn-back:hover {
+            transform: translateX(5px);
+        }
+        body[dir="rtl"] .btn-back i {
+            transform: rotate(0deg);
+        }
+        body[dir="ltr"] .btn-back i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body data-lang="ar">
+    <!-- Floating Language Switcher -->
+    <div class="lang-switch-container">
+        <button id="lang-btn" class="lang-btn">
+            <span class="lang-ar">English <i class="fa-solid fa-globe"></i></span>
+            <span class="lang-en">العربية <i class="fa-solid fa-globe"></i></span>
+        </button>
+    </div>
+
+    <!-- Theme Color Switcher -->
+    <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير لون الخلفية">🎨</button>
+        <div class="theme-dots" id="theme-dots">
+            <button class="theme-dot active" data-theme="midnight" style="background:#0B1215;" title="Midnight"></button>
+            <button class="theme-dot" data-theme="ocean"    style="background:#0D1B2A;" title="Ocean"></button>
+            <button class="theme-dot" data-theme="forest"   style="background:#0A1A0F;" title="Forest"></button>
+            <button class="theme-dot" data-theme="espresso" style="background:#1A0F0A;" title="Espresso"></button>
+            <button class="theme-dot" data-theme="plum"     style="background:#160D24;" title="Plum"></button>
+            <button class="theme-dot" data-theme="slate"    style="background:#141820;" title="Slate"></button>
+        </div>
+    </div>
+
+    <!-- Luxury Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="offers-page-container">
+        <!-- Back Button -->
+        <div class="back-btn-container">
+            <a href="index.html" class="btn-back">
+                <span class="lang-ar"><i class="fa-solid fa-arrow-right"></i> العودة للرئيسية</span>
+                <span class="lang-en">Back to Home <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- Thursday & Friday Offers Card -->
+        <section class="offers-section reveal active" style="opacity: 1; transform: translateY(0); width: 100%;">
+            <h2 class="section-title section-title-gold">
+                <span class="lang-ar">عروض الخميس والجمعه 🔥</span>
+                <span class="lang-en">Thursday &amp; Friday Offers 🔥</span>
+            </h2>
+            <div class="offer-container">
+                <div class="offer-card-wrapper">
+                    <div class="offer-card">
+                        <div class="offer-badge lang-ar">عرض خاص ⚡</div>
+                        <div class="offer-badge lang-en">Special Offer ⚡</div>
+                        <img src="assets/offer.png" alt="عروض الخميس والجمعة" class="offer-img">
+                        <div class="offer-action">
+                            <div class="btn-order-now-wrapper">
+                                <a href="index.html#order-form-section" class="btn-order-now btn-glow">
+                                    <span class="lang-ar">اطلب الآن <i class="fa-solid fa-utensils"></i></span>
+                                    <span class="lang-en">Order Now <i class="fa-solid fa-utensils"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

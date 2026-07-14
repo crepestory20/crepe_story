@@ -510,6 +510,66 @@ body[data-lang="en"] .theme-dots {
     box-shadow: none;
 }
 
+/* بنر عروض الخميس والجمعة القابل للضغط */
+.offers-banner-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.offers-banner-card {
+    background: linear-gradient(135deg, #C5A059 0%, #e8c97a 40%, #C5A059 70%, #a07c30 100%);
+    color: #ffffff;
+    padding: 18px 24px;
+    border-radius: 18px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(197, 160, 89, 0.45);
+    transition: var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.offers-banner-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: goldShine 3s ease-in-out infinite;
+}
+
+.offers-banner-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.6);
+}
+
+.click-badge {
+    background: #0b1215;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+
 .offer-container {
     width: 100%;
     display: flex;
