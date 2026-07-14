@@ -725,6 +725,7 @@ body[data-lang="en"] .offer-badge {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     width: 100%;
+    perspective: 900px;
 }
 
 .menu-item-card {
@@ -739,13 +740,38 @@ body[data-lang="en"] .offer-badge {
     padding: 10px;
     gap: 8px;
     box-shadow: var(--card-shadow);
-    transition: var(--transition-smooth);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.2s ease;
     text-align: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* golden shimmer overlay that follows mouse cursor */
+.menu-item-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at var(--shine-x, 50%) var(--shine-y, 50%),
+        rgba(197,160,89,0.22) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
 }
 
 .menu-item-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--glass-border-hover);
+    border-color: rgba(197, 160, 89, 0.55);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 20px rgba(197,160,89,0.18);
+}
+
+.menu-item-card:hover::after {
+    opacity: 1;
 }
 
 .item-img-wrapper {
@@ -1697,5 +1723,55 @@ body[data-lang="en"] .social-card:hover .card-arrow {
         font-size: 0.78rem;
         line-height: 1.45;
         margin-bottom: 8px;
+    }
+}
+
+/* ==========================================
+   MOBILE TOUCH INTERACTION EFFECTS
+   ========================================== */
+
+/* Golden touch ripple on menu cards */
+.touch-ripple-gold {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197,160,89,0.85) 0%, rgba(240,208,128,0.4) 50%, transparent 70%);
+    pointer-events: none;
+    animation: touchRippleGold 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+    z-index: 10;
+}
+
+@keyframes touchRippleGold {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(18);
+        opacity: 0;
+    }
+}
+
+/* Active press state for order buttons on mobile */
+@media (hover: none) {
+    .btn-select-order:active,
+    .btn-offer-order:active,
+    .btn-submit-order:active,
+    .btn-order:active,
+    .btn-order-now:active {
+        transform: scale(0.95) !important;
+        filter: brightness(0.9);
+    }
+
+    /* Smooth tab button press */
+    .tab-btn:active {
+        transform: scale(0.93);
+        opacity: 0.85;
     }
 }
