@@ -12,7 +12,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         .order-page-container {
             max-width: 600px;
@@ -54,8 +54,18 @@
         body[dir="rtl"] .btn-back i {
             transform: rotate(0deg);
         }
-        body[dir="ltr"] .btn-back i {
-            transform: rotate(180deg);
+        @media (max-width: 480px) {
+            .order-page-container {
+                padding: 16px 4px;
+            }
+            .back-btn-container {
+                margin-bottom: 12px;
+                padding: 0 2px;
+            }
+            .btn-back {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -281,6 +291,6 @@
         </section>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>

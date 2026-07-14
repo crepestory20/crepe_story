@@ -1600,27 +1600,28 @@ body[data-lang="en"] .social-card:hover .card-arrow {
     }
 
     .menu-tabs {
-        margin-bottom: 14px;
-        gap: 6px;
+        margin-bottom: 12px;
+        gap: 5px;
+        padding-bottom: 8px;
     }
 
     .tab-btn {
-        padding: 6px 10px;
-        font-size: 0.72rem;
-        border-radius: 20px;
+        padding: 5px 8px;
+        font-size: 0.68rem;
+        border-radius: 16px;
         border: 1px solid rgba(197, 160, 89, 0.2);
     }
     
     .menu-item-card {
-        padding: 8px 6px;
-        border-radius: 10px;
-        gap: 6px;
+        padding: 6px 4px;
+        border-radius: 8px;
+        gap: 4px;
         border: 1px solid rgba(197, 160, 89, 0.1);
     }
     
     .item-img-wrapper {
-        width: 55px;
-        height: 55px;
+        width: 48px;
+        height: 48px;
     }
     
     body[data-lang="ar"] .item-img-wrapper,
@@ -1629,35 +1630,36 @@ body[data-lang="en"] .social-card:hover .card-arrow {
     }
     
     .item-header {
-        margin-bottom: 2px;
+        margin-bottom: 1px;
+        gap: 1px;
     }
 
     .item-header h3 {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
     }
     
     .item-price {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 
     .item-details p {
-        font-size: 0.6rem;
-        line-height: 1.25;
-        margin-bottom: 4px;
+        font-size: 0.55rem;
+        line-height: 1.2;
+        margin-bottom: 2px;
     }
 
     .btn-select-order {
-        padding: 3px 4px;
-        font-size: 0.58rem;
+        padding: 2px 3px;
+        font-size: 0.55rem;
     }
 
     .order-buttons-group {
-        gap: 4px;
-        margin-top: 3px;
+        gap: 2px;
+        margin-top: 2px;
     }
 
     .order-buttons-group .btn-select-order {
-        padding: 3px 2px;
+        padding: 2px 1px;
     }
 
     /* Location & Testimonials */
