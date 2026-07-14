@@ -99,78 +99,41 @@ function renderMenu(category) {
   }).join('');
   // Re-bind order buttons after render
   bindOrderButtons();
-  // Re-bind mobile + desktop interaction effects after render
-  bindMobileEffects();
+  // Re-bind 3D tilt effect after render
+  bindTiltEffect();
 }
 
-function bindMobileEffects() {
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+function bindTiltEffect() {
+  // Skip on touch-only devices to preserve mobile performance
+  if (window.matchMedia('(hover: none)').matches) return;
 
   document.querySelectorAll('.menu-item-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;   // 0 → width
+      const y = e.clientY - rect.top;    // 0 → height
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
 
-    if (isTouchDevice) {
-      // =====================================================
-      // MOBILE: Golden touch ripple + press scale bounce
-      // =====================================================
-      card.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        const rect  = card.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
+      // Max tilt angle in degrees
+      const maxTilt = 14;
+      const rotateY =  ((x - cx) / cx) * maxTilt;
+      const rotateX = -((y - cy) / cy) * maxTilt;
 
-        // Press-scale feedback
-        card.style.transition = 'transform 0.12s ease';
-        card.style.transform  = 'scale(0.96)';
+      card.style.transform =
+        `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`;
 
-        // Create ripple element
-        const ripple = document.createElement('span');
-        ripple.className = 'touch-ripple-gold';
-        ripple.style.left = `${x}px`;
-        ripple.style.top  = `${y}px`;
-        card.appendChild(ripple);
-
-        // Remove ripple after animation
-        setTimeout(() => ripple.remove(), 600);
-      }, { passive: true });
-
-      card.addEventListener('touchend', () => {
-        card.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)';
-        card.style.transform  = 'scale(1)';
-        setTimeout(() => { card.style.transition = ''; card.style.transform = ''; }, 380);
-      }, { passive: true });
-
-    } else {
-      // =====================================================
-      // DESKTOP: 3D tilt + cursor-following shimmer
-      // =====================================================
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const maxTilt = 14;
-        const rotateY =  ((x - cx) / cx) * maxTilt;
-        const rotateX = -((y - cy) / cy) * maxTilt;
-        card.style.transform =
-          `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`;
-        card.style.setProperty('--shine-x', `${(x / rect.width)  * 100}%`);
-        card.style.setProperty('--shine-y', `${(y / rect.height) * 100}%`);
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    }
-  });
-
-  // =====================================================
-  // MOBILE: Haptic vibration on order-button tap
-  // =====================================================
-  if (isTouchDevice && navigator.vibrate) {
-    document.querySelectorAll('.btn-select-order, .btn-offer-order, .btn-submit-order').forEach(btn => {
-      btn.addEventListener('touchstart', () => {
-        navigator.vibrate(30); // 30ms subtle buzz
-      }, { passive: true });
+      // Move shimmer to cursor position
+      const pctX = (x / rect.width)  * 100;
+      const pctY = (y / rect.height) * 100;
+      card.style.setProperty('--shine-x', `${pctX}%`);
+      card.style.setProperty('--shine-y', `${pctY}%`);
     });
-  }
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 }
 
 function setFormSize(size) {
@@ -613,43 +576,4 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('selectedMenuItem');
         }
     }
-    // ============================================================
-    // GYROSCOPE PARALLAX — moves background glows on phone tilt
-    // ============================================================
-    if (window.DeviceOrientationEvent) {
-        const glowEls = document.querySelectorAll('.bg-glow');
-        let baseBeta  = null;
-        let baseGamma = null;
-
-        const handleOrientation = (e) => {
-            if (baseBeta  === null) baseBeta  = e.beta  || 0;
-            if (baseGamma === null) baseGamma = e.gamma || 0;
-
-            const dx = Math.min(Math.max((e.gamma - baseGamma) * 1.5, -30), 30);
-            const dy = Math.min(Math.max((e.beta  - baseBeta)  * 1.0, -20), 20);
-
-            glowEls.forEach((glow, i) => {
-                const factor = (i + 1) * 0.6;
-                if (i === 0) {
-                    glow.style.transform = `translate(calc(-50% + ${dx * factor}px), ${dy * factor}px)`;
-                } else {
-                    glow.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
-                }
-            });
-        };
-
-        // iOS 13+ requires a user permission gesture
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            document.addEventListener('touchstart', function requestPerm() {
-                DeviceOrientationEvent.requestPermission()
-                    .then(state => {
-                        if (state === 'granted') window.addEventListener('deviceorientation', handleOrientation);
-                    }).catch(() => {});
-                document.removeEventListener('touchstart', requestPerm);
-            }, { once: true });
-        } else {
-            window.addEventListener('deviceorientation', handleOrientation, { passive: true });
-        }
-    }
-
 });
