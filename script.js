@@ -125,7 +125,7 @@ function bindOrderButtons() {
         if (clickedSize) {
           localStorage.setItem('selectedMenuSize', clickedSize);
         }
-        window.location.href = 'index.html#order-form-section';
+        window.location.href = 'order.html';
         return;
       }
       

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="طلب أونلاين مباشرة عبر واتساب من مطعم CRÊPE STORY - اختر وجبتك المفضلة وسجل طلبك بسهولة.">
+    <title>CRÊPE STORY | طلب أونلاين عبر واتساب</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .order-page-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .back-btn-container {
+            margin-bottom: 24px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            box-shadow: var(--card-shadow);
+        }
+        .btn-back:hover {
+            background: var(--glass-border-hover);
+            transform: translateX(-5px);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+        }
+        body[dir="ltr"] .btn-back:hover {
+            transform: translateX(5px);
+        }
+        body[dir="rtl"] .btn-back i {
+            transform: rotate(0deg);
+        }
+        body[dir="ltr"] .btn-back i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body data-lang="ar">
+    <!-- Floating Language Switcher -->
+    <div class="lang-switch-container">
+        <button id="lang-btn" class="lang-btn">
+            <span class="lang-ar">English <i class="fa-solid fa-globe"></i></span>
+            <span class="lang-en">العربية <i class="fa-solid fa-globe"></i></span>
+        </button>
+    </div>
+
+    <!-- Theme Color Switcher -->
+    <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير لون الخلفية">🎨</button>
+        <div class="theme-dots" id="theme-dots">
+            <button class="theme-dot active" data-theme="midnight" style="background:#0B1215;" title="Midnight"></button>
+            <button class="theme-dot" data-theme="ocean"    style="background:#0D1B2A;" title="Ocean"></button>
+            <button class="theme-dot" data-theme="forest"   style="background:#0A1A0F;" title="Forest"></button>
+            <button class="theme-dot" data-theme="espresso" style="background:#1A0F0A;" title="Espresso"></button>
+            <button class="theme-dot" data-theme="plum"     style="background:#160D24;" title="Plum"></button>
+            <button class="theme-dot" data-theme="slate"    style="background:#141820;" title="Slate"></button>
+        </div>
+    </div>
+
+    <!-- Luxury Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="order-page-container">
+        <!-- Back Button -->
+        <div class="back-btn-container">
+            <a href="index.html" class="btn-back">
+                <span class="lang-ar"><i class="fa-solid fa-arrow-right"></i> العودة للرئيسية</span>
+                <span class="lang-en">Back to Home <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- WhatsApp Pre-Order Form -->
+        <section id="order-form-section" class="order-form-section reveal active" style="opacity: 1; transform: translateY(0); width: 100%;">
+            <h2 class="section-title section-title-gold">
+                <span class="lang-ar">اطلب مباشرة عبر واتساب 📱</span>
+                <span class="lang-en">Pre-Order via WhatsApp 📱</span>
+            </h2>
+            <div class="form-container">
+                <form id="whatsapp-form" class="whatsapp-form">
+                    <div class="form-group">
+                        <label for="user-name">
+                            <span class="lang-ar">الاسم الكريم</span>
+                            <span class="lang-en">Your Name</span>
+                        </label>
+                        <input type="text" id="user-name" placeholder="أدخل اسمك هنا..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-phone">
+                            <span class="lang-ar">رقم الهاتف</span>
+                            <span class="lang-en">Phone Number</span>
+                        </label>
+                        <input type="tel" id="user-phone" placeholder="01xxxxxxxxx" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="order-item">
+                                <span class="lang-ar">الصنف المختار</span>
+                                <span class="lang-en">Selected Dish</span>
+                            </label>
+                            <select id="order-item" required>
+                                <option value="">-- اختر صنفاً من القائمة --</option>
+                                <optgroup label="🍗 عشاق الدجاج">
+                                    <option value="بانية">بانية (وسط 73 | كبير 90 EGP)</option>
+                                    <option value="كرانشي">كرانشي (وسط 90 | كبير 120 EGP)</option>
+                                    <option value="زنجر">زنجر (وسط 95 | كبير 133 EGP)</option>
+                                    <option value="كوردون بلو">كوردون بلو (وسط 90 | كبير 112 EGP)</option>
+                                    <option value="شيش طاووق">شيش طاووق (وسط 100 | كبير 128 EGP)</option>
+                                    <option value="فاهيتا">فاهيتا (وسط 112 | كبير 138 EGP)</option>
+                                    <option value="تندر">تندر (وسط 107 | كبير 128 EGP)</option>
+                                    <option value="شاورما">شاورما (وسط 100 | كبير 133 EGP)</option>
+                                    <option value="ميكس فراخ">ميكس فراخ (وسط 111 | كبير 138 EGP)</option>
+                                    <option value="تشيزي عادنس">تشيزي عادنس (وسط 100 | كبير 123 EGP)</option>
+                                    <option value="تشيكن رانش">تشيكن رانش (وسط 100 | كبير 123 EGP)</option>
+                                    <option value="تشيكن باربيكيو">تشيكن باربيكيو (وسط 100 | كبير 123 EGP)</option>
+                                    <option value="سموكي">سموكي (وسط 100 | كبير 123 EGP)</option>
+                                    <option value="هالبينو">هالبينو (وسط 100 | كبير 123 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🥩 عشاق اللحوم">
+                                    <option value="هوت دوج">هوت دوج (وسط 78 | كبير 95 EGP)</option>
+                                    <option value="كفتة">كفتة (وسط 84 | كبير 107 EGP)</option>
+                                    <option value="سجق">سجق (وسط 89 | كبير 113 EGP)</option>
+                                    <option value="برجر لحم">برجر لحم (وسط 89 | كبير 118 EGP)</option>
+                                    <option value="ميكس لحوم">ميكس لحوم (وسط 108 | كبير 143 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🔥 ميكسات">
+                                    <option value="دوينو">دوينو (وسط 78 | كبير 100 EGP)</option>
+                                    <option value="بيج شو">بيج شو (وسط 90 | كبير 100 EGP)</option>
+                                    <option value="الأكيل">الأكيل (وسط 112 | كبير 139 EGP)</option>
+                                    <option value="الصاروخ">الصاروخ (وسط 100 | كبير 118 EGP)</option>
+                                    <option value="كريب الوحش">كريب الوحش (وسط 135 | كبير 160 EGP)</option>
+                                    <option value="كريب إستوري">كريب إستوري (وسط 119 | كبير 133 EGP)</option>
+                                    <option value="واعتين">واعتين (وسط 95 | كبير 113 EGP)</option>
+                                    <option value="ميكسيكان مكس">ميكسيكان مكس (وسط 89 | كبير 118 EGP)</option>
+                                    <option value="ميكس جبن">ميكس جبن (وسط 80 | كبير 100 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🍳 كريب الفطار">
+                                    <option value="كريب بطاطس">كريب بطاطس (وسط 45 | كبير 56 EGP)</option>
+                                    <option value="كريب بطاطس بالبيض">كريب بطاطس بالبيض (وسط 56 | كبير 68 EGP)</option>
+                                    <option value="كريب بطاطس مدخن">كريب بطاطس مدخن (وسط 55 | كبير 68 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🍫 كريب الحلو">
+                                    <option value="كريب نيوتيلا">كريب نيوتيلا (90 EGP)</option>
+                                    <option value="كريب شيكولاته">كريب شيكولاته (50 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🧇 الوافل">
+                                    <option value="وافل نيوتيلا">وافل نيوتيلا (95 EGP)</option>
+                                    <option value="وافل شيكولاته">وافل شيكولاته (70 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🍔 تشيز برجر">
+                                    <option value="كلاسيك برجر">كلاسيك برجر (80 EGP)</option>
+                                    <option value="برجر إستوري">برجر إستوري (120 EGP)</option>
+                                </optgroup>
+                                <optgroup label="🍟 القسم السوري">
+                                    <option value="بطاطس سادة">بطاطس سادة (30 EGP)</option>
+                                    <option value="بطاطس موزاريلا">بطاطس موزاريلا (40 EGP)</option>
+                                    <option value="بطاطس سوسيس">بطاطس سوسيس (50 EGP)</option>
+                                    <option value="بطاطس برجر">بطاطس برجر (50 EGP)</option>
+                                    <option value="بطاطس بانية">بطاطس بانية (55 EGP)</option>
+                                    <option value="بطاطس إستريس">بطاطس إستريس (75 EGP)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group flex-1">
+                            <label for="order-qty">
+                                <span class="lang-ar">الكمية</span>
+                                <span class="lang-en">Qty</span>
+                            </label>
+                            <input type="number" id="order-qty" min="1" max="20" value="1" required>
+                        </div>
+                    </div>
+
+                    <!-- حجم الطلب: وسط أو كبير -->
+                    <div class="form-group" id="form-group-size" style="display: none;">
+                        <label>
+                            <span class="lang-ar">الحجم المطلوب</span>
+                            <span class="lang-en">Selected Size</span>
+                        </label>
+                        <div class="size-type-toggle">
+                            <button type="button" class="size-type-btn active" data-size="medium" id="btn-size-medium">
+                                <span class="lang-ar">وسط</span>
+                                <span class="lang-en">Medium</span>
+                            </button>
+                            <button type="button" class="size-type-btn" data-size="large" id="btn-size-large">
+                                <span class="lang-ar">كبير</span>
+                                <span class="lang-en">Large</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="order-size" value="medium">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-ar">نوع الطلب</span>
+                            <span class="lang-en">Order Type</span>
+                        </label>
+                        <div class="order-type-toggle">
+                            <button type="button" class="order-type-btn active" data-type="delivery" id="btn-delivery">
+                                <i class="fa-solid fa-motorcycle"></i>
+                                <span class="lang-ar">توصيل (أوردر)</span>
+                                <span class="lang-en">Delivery</span>
+                            </button>
+                            <button type="button" class="order-type-btn" data-type="pickup" id="btn-pickup">
+                                <i class="fa-solid fa-store"></i>
+                                <span class="lang-ar">استلام من المحل</span>
+                                <span class="lang-en">Pickup</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="order-type" value="delivery">
+                    </div>
+
+                    <!-- طريقة الدفع: نقدي أو فودافون كاش -->
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-ar">طريقة الدفع</span>
+                            <span class="lang-en">Payment Method</span>
+                        </label>
+                        <div class="payment-type-toggle">
+                            <button type="button" class="payment-type-btn active" data-pay="cash" id="btn-cash">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <span class="lang-ar">نقدي (كاش)</span>
+                                <span class="lang-en">Cash</span>
+                            </button>
+                            <button type="button" class="payment-type-btn" data-pay="vodafone" id="btn-vodafone">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span class="lang-ar">فودافون كاش</span>
+                                <span class="lang-en">Vodafone Cash</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="payment-type" value="cash">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order-notes">
+                            <span class="lang-ar">ملاحظات إضافية</span>
+                            <span class="lang-en">Special Requests</span>
+                        </label>
+                        <textarea id="order-notes" rows="3" placeholder="مثال: بدون بصل، زيادة شوكولاتة..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-order btn-glow">
+                        <span class="lang-ar">إرسال الطلب للواتساب <i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="lang-en">Send to WhatsApp <i class="fa-brands fa-whatsapp"></i></span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
