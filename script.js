@@ -118,26 +118,46 @@ function bindOrderButtons() {
   document.querySelectorAll('.btn-select-order').forEach(btn => {
     btn.addEventListener('click', () => {
       const itemAr = btn.getAttribute('data-item-ar');
+      const clickedSize = btn.getAttribute('data-size');
       const sel = document.getElementById('order-item');
+      
+      if (!sel) {
+        // We are on menu.html, store selection and redirect
+        localStorage.setItem('selectedMenuItem', itemAr);
+        if (clickedSize) {
+          localStorage.setItem('selectedMenuSize', clickedSize);
+        }
+        window.location.href = 'index.html#order-form-section';
+        return;
+      }
+      
+      // We are on index.html, select normal items
       for (let i = 0; i < sel.options.length; i++) {
         if (sel.options[i].value.includes(itemAr)) { sel.selectedIndex = i; break; }
       }
-      document.getElementById('order-qty').value = 1;
       
-      const clickedSize = btn.getAttribute('data-size');
+      const qtyInput = document.getElementById('order-qty');
+      if (qtyInput) {
+        qtyInput.value = 1;
+      }
+      
       if (clickedSize) {
         setFormSize(clickedSize);
       }
       
-      if (sel) {
-        sel.dispatchEvent(new Event('change'));
+      sel.dispatchEvent(new Event('change'));
+      
+      const orderFormSec = document.getElementById('order-form-section');
+      if (orderFormSec) {
+        orderFormSec.scrollIntoView({ behavior:'smooth' });
       }
       
-      document.getElementById('order-form-section').scrollIntoView({ behavior:'smooth' });
       const fc = document.querySelector('.form-container');
-      fc.style.borderColor = 'var(--primary-color)';
-      fc.style.boxShadow = '0 0 30px rgba(197,160,89,0.45)';
-      setTimeout(() => { fc.style.borderColor = ''; fc.style.boxShadow = ''; }, 1200);
+      if (fc) {
+        fc.style.borderColor = 'var(--primary-color)';
+        fc.style.boxShadow = '0 0 30px rgba(197,160,89,0.45)';
+        setTimeout(() => { fc.style.borderColor = ''; fc.style.boxShadow = ''; }, 1200);
+      }
     });
   });
 }
@@ -488,4 +508,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
+    // Check if redirecting from menu.html with selected item
+    const storedItem = localStorage.getItem('selectedMenuItem');
+    if (storedItem) {
+        const sel = document.getElementById('order-item');
+        if (sel) {
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value.includes(storedItem)) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+            
+            const storedSize = localStorage.getItem('selectedMenuSize');
+            if (storedSize) {
+                setFormSize(storedSize);
+                localStorage.removeItem('selectedMenuSize');
+            }
+            
+            sel.dispatchEvent(new Event('change'));
+            
+            setTimeout(() => {
+                const orderFormSec = document.getElementById('order-form-section');
+                if (orderFormSec) {
+                    orderFormSec.scrollIntoView({ behavior:'smooth' });
+                }
+                const fc = document.querySelector('.form-container');
+                if (fc) {
+                    fc.style.borderColor = 'var(--primary-color)';
+                    fc.style.boxShadow = '0 0 30px rgba(197,160,89,0.45)';
+                    setTimeout(() => { fc.style.borderColor = ''; fc.style.boxShadow = ''; }, 1200);
+                }
+            }, 500);
+        }
+        localStorage.removeItem('selectedMenuItem');
+    }
 });

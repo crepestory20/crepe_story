@@ -510,64 +510,60 @@ body[data-lang="en"] .theme-dots {
     box-shadow: none;
 }
 
-/* بنر عروض الخميس والجمعة القابل للضغط */
-.offers-banner-link {
+/* ربط عناوين الأقسام بالصفحات الأخرى */
+.menu-title-link {
     text-decoration: none;
     display: block;
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
-.offers-banner-card {
-    background: linear-gradient(135deg, #C5A059 0%, #e8c97a 40%, #C5A059 70%, #a07c30 100%);
-    color: #ffffff;
-    padding: 18px 24px;
-    border-radius: 18px;
-    font-size: 1.25rem;
-    font-weight: 800;
-    text-align: center;
-    box-shadow: 0 6px 24px rgba(197, 160, 89, 0.45);
+.menu-header-gold {
+    cursor: pointer;
     transition: var(--transition-smooth);
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    position: relative;
-    overflow: hidden;
+    gap: 16px;
 }
 
-.offers-banner-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-    animation: goldShine 3s ease-in-out infinite;
-}
-
-.offers-banner-card:hover {
+.menu-header-gold:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.6);
+    box-shadow: 0 8px 24px rgba(197, 160, 89, 0.45);
 }
 
-.click-badge {
+.menu-click-btn {
     background: #0b1215;
-    color: var(--primary-color);
+    color: #ffffff;
     font-size: 0.85rem;
     font-weight: 700;
-    padding: 4px 12px;
+    padding: 6px 16px;
     border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     display: inline-flex;
     align-items: center;
     gap: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    animation: badgePulse 2s infinite;
+    animation: menuBtnPulse 2s infinite;
+    vertical-align: middle;
+    margin-right: 12px;
 }
 
-@keyframes badgePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
+body[dir="ltr"] .menu-click-btn {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+@keyframes menuBtnPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    50% { 
+        transform: scale(1.08); 
+        box-shadow: 0 0 12px rgba(197, 160, 89, 0.6);
+        border-color: var(--primary-color);
+    }
 }
 
 .offer-container {

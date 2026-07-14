@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="منيو مطعم CRÊPE STORY - تصفح قائمة أشهى المأكولات، كريب حلو، كريب حادق، وافل، والمزيد.">
+    <title>CRÊPE STORY | منيو كريب ستوري</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .menu-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .back-btn-container {
+            margin-bottom: 24px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            box-shadow: var(--card-shadow);
+        }
+        .btn-back:hover {
+            background: var(--glass-border-hover);
+            transform: translateX(-5px);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+        }
+        body[dir="ltr"] .btn-back:hover {
+            transform: translateX(5px);
+        }
+        body[dir="rtl"] .btn-back i {
+            transform: rotate(0deg);
+        }
+        body[dir="ltr"] .btn-back i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body data-lang="ar">
+    <!-- Floating Language Switcher -->
+    <div class="lang-switch-container">
+        <button id="lang-btn" class="lang-btn">
+            <span class="lang-ar">English <i class="fa-solid fa-globe"></i></span>
+            <span class="lang-en">العربية <i class="fa-solid fa-globe"></i></span>
+        </button>
+    </div>
+
+    <!-- Theme Color Switcher -->
+    <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير لون الخلفية">🎨</button>
+        <div class="theme-dots" id="theme-dots">
+            <button class="theme-dot active" data-theme="midnight" style="background:#0B1215;" title="Midnight"></button>
+            <button class="theme-dot" data-theme="ocean"    style="background:#0D1B2A;" title="Ocean"></button>
+            <button class="theme-dot" data-theme="forest"   style="background:#0A1A0F;" title="Forest"></button>
+            <button class="theme-dot" data-theme="espresso" style="background:#1A0F0A;" title="Espresso"></button>
+            <button class="theme-dot" data-theme="plum"     style="background:#160D24;" title="Plum"></button>
+            <button class="theme-dot" data-theme="slate"    style="background:#141820;" title="Slate"></button>
+        </div>
+    </div>
+
+    <!-- Luxury Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="menu-page-container">
+        <!-- Back Button -->
+        <div class="back-btn-container">
+            <a href="index.html" class="btn-back">
+                <span class="lang-ar"><i class="fa-solid fa-arrow-right"></i> العودة للرئيسية</span>
+                <span class="lang-en">Back to Home <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- 3. Digital Interactive Menu -->
+        <section id="menu-section" class="menu-section reveal active" style="opacity: 1; transform: translateY(0); width: 100%;">
+            <h2 class="section-title section-title-gold">
+                <span class="lang-ar">منيو كريب ستوري 📖</span>
+                <span class="lang-en">Our Digital Menu 📖</span>
+            </h2>
+
+            <!-- Menu Tabs -->
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="chicken">
+                    <span class="lang-ar">عشاق الدجاج 🍗</span>
+                    <span class="lang-en">Chicken 🍗</span>
+                </button>
+                <button class="tab-btn" data-category="meat">
+                    <span class="lang-ar">عشاق اللحوم 🥩</span>
+                    <span class="lang-en">Meat 🥩</span>
+                </button>
+                <button class="tab-btn" data-category="mix">
+                    <span class="lang-ar">ميكسات 🔥</span>
+                    <span class="lang-en">Mixes 🔥</span>
+                </button>
+                <button class="tab-btn" data-category="breakfast">
+                    <span class="lang-ar">كريب الفطار 🍳</span>
+                    <span class="lang-en">Breakfast 🍳</span>
+                </button>
+                <button class="tab-btn" data-category="sweet">
+                    <span class="lang-ar">كريب الحلو 🍫</span>
+                    <span class="lang-en">Sweet 🍫</span>
+                </button>
+                <button class="tab-btn" data-category="waffle">
+                    <span class="lang-ar">الوافل 🧇</span>
+                    <span class="lang-en">Waffle 🧇</span>
+                </button>
+                <button class="tab-btn" data-category="burger">
+                    <span class="lang-ar">تشيز برجر 🍔</span>
+                    <span class="lang-en">Burger 🍔</span>
+                </button>
+                <button class="tab-btn" data-category="syrian">
+                    <span class="lang-ar">القسم السوري 🍟</span>
+                    <span class="lang-en">Syrian 🍟</span>
+                </button>
+            </div>
+
+            <!-- Menu Grid — rendered by script.js -->
+            <div class="menu-grid" id="menu-grid">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
