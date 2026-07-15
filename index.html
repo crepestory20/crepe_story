@@ -28,6 +28,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body data-lang="ar">
@@ -90,272 +91,37 @@
             </div>
 
             <div class="cta-container reveal fade-up">
-                <a href="#order-form-section" class="btn-order btn-glow">
+                <a href="menu.html" class="btn-order btn-glow">
                     <span class="lang-ar">اطلب الآن <i class="fa-solid fa-utensils"></i></span>
                     <span class="lang-en">Order Now <i class="fa-solid fa-utensils"></i></span>
                 </a>
             </div>
         </header>
 
-        <!-- Thursday & Friday Offers -->
         <!-- Thursday & Friday Offers Link -->
         <section class="offers-section reveal">
-            <h2 class="section-title section-title-gold">
-                <span class="lang-ar">عروض الخميس والجمعه 🔥</span>
-                <span class="lang-en">Thursday &amp; Friday Offers 🔥</span>
-            </h2>
-            <div class="offer-container">
-                <div class="offer-card-wrapper">
-                    <div class="offer-card">
-                        <div class="offer-badge lang-ar">عرض خاص ⚡</div>
-                        <div class="offer-badge lang-en">Special Offer ⚡</div>
-                        <img src="assets/offer.png" alt="عروض الخميس والجمعة" class="offer-img">
-                        <div class="offer-action">
-                            <div class="btn-order-now-wrapper">
-                                <a href="#order-form-section" class="btn-order-now btn-glow">
-                                    <span class="lang-ar">اطلب الآن <i class="fa-solid fa-utensils"></i></span>
-                                    <span class="lang-en">Order Now <i class="fa-solid fa-utensils"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="offers.html" class="offers-banner-link">
-                        <div class="offers-banner-card">
-                            <span class="lang-ar">عروض الخميس والجمعة 🔥 <span class="click-badge">اضغط هنا <i
-                                        class="fa-solid fa-arrow-pointer"></i></span></span>
-                            <span class="lang-en">Thursday &amp; Friday Offers 🔥 <span class="click-badge">Click Here
-                                    <i class="fa-solid fa-arrow-pointer"></i></span></span>
-                        </div>
-                </div>
-                </a>
+            <a href="offers.html" class="menu-title-link">
+                <h2 class="section-title section-title-gold menu-header-gold">
+                    <span class="lang-ar">عروض الخميس والجمعة 🔥 <span class="menu-click-btn">اضغط لرؤية العروض <i
+                                class="fa-solid fa-arrow-left"></i></span></span>
+                    <span class="lang-en">Thursday &amp; Friday Offers 🔥 <span class="menu-click-btn">Click to View <i
+                                class="fa-solid fa-arrow-right"></i></span></span>
+                </h2>
+            </a>
         </section>
 
-        <!-- WhatsApp Pre-Order Form -->
-        <section id="order-form-section" class="order-form-section reveal">
-            <h2 class="section-title section-title-gold">
-                <span class="lang-ar">اطلب مباشرة عبر واتساب 📱</span>
-                <span class="lang-en">Pre-Order via WhatsApp 📱</span>
-            </h2>
-            <div class="form-container">
-                <form id="whatsapp-form" class="whatsapp-form">
-                    <div class="form-group">
-                        <label for="user-name">
-                            <span class="lang-ar">الاسم الكريم</span>
-                            <span class="lang-en">Your Name</span>
-                        </label>
-                        <input type="text" id="user-name" placeholder="أدخل اسمك هنا..." required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="user-phone">
-                            <span class="lang-ar">رقم الهاتف</span>
-                            <span class="lang-en">Phone Number</span>
-                        </label>
-                        <input type="tel" id="user-phone" placeholder="01xxxxxxxxx" required>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group flex-2">
-                            <label for="order-item">
-                                <span class="lang-ar">الصنف المختار</span>
-                                <span class="lang-en">Selected Dish</span>
-                            </label>
-                            <select id="order-item" required>
-                                <option value="">-- اختر صنفاً من القائمة --</option>
-                                <optgroup label="🍗 عشاق الدجاج">
-                                    <option value="بانية">بانية (وسط 73 | كبير 90 EGP)</option>
-                                    <option value="كرانشي">كرانشي (وسط 90 | كبير 120 EGP)</option>
-                                    <option value="زنجر">زنجر (وسط 95 | كبير 133 EGP)</option>
-                                    <option value="كوردون بلو">كوردون بلو (وسط 90 | كبير 112 EGP)</option>
-                                    <option value="شيش طاووق">شيش طاووق (وسط 100 | كبير 128 EGP)</option>
-                                    <option value="فاهيتا">فاهيتا (وسط 112 | كبير 138 EGP)</option>
-                                    <option value="تندر">تندر (وسط 107 | كبير 128 EGP)</option>
-                                    <option value="شاورما">شاورما (وسط 100 | كبير 133 EGP)</option>
-                                    <option value="ميكس فراخ">ميكس فراخ (وسط 111 | كبير 138 EGP)</option>
-                                    <option value="تشيزي عادنس">تشيزي عادنس (وسط 100 | كبير 123 EGP)</option>
-                                    <option value="تشيكن رانش">تشيكن رانش (وسط 100 | كبير 123 EGP)</option>
-                                    <option value="تشيكن باربيكيو">تشيكن باربيكيو (وسط 100 | كبير 123 EGP)</option>
-                                    <option value="سموكي">سموكي (وسط 100 | كبير 123 EGP)</option>
-                                    <option value="هالبينو">هالبينو (وسط 100 | كبير 123 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🥩 عشاق اللحوم">
-                                    <option value="هوت دوج">هوت دوج (وسط 78 | كبير 95 EGP)</option>
-                                    <option value="كفتة">كفتة (وسط 84 | كبير 107 EGP)</option>
-                                    <option value="سجق">سجق (وسط 89 | كبير 113 EGP)</option>
-                                    <option value="برجر لحم">برجر لحم (وسط 89 | كبير 118 EGP)</option>
-                                    <option value="ميكس لحوم">ميكس لحوم (وسط 108 | كبير 143 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🔥 ميكسات">
-                                    <option value="دوينو">دوينو (وسط 78 | كبير 100 EGP)</option>
-                                    <option value="بيج شو">بيج شو (وسط 90 | كبير 100 EGP)</option>
-                                    <option value="الأكيل">الأكيل (وسط 112 | كبير 139 EGP)</option>
-                                    <option value="الصاروخ">الصاروخ (وسط 100 | كبير 118 EGP)</option>
-                                    <option value="كريب الوحش">كريب الوحش (وسط 135 | كبير 160 EGP)</option>
-                                    <option value="كريب إستوري">كريب إستوري (وسط 119 | كبير 133 EGP)</option>
-                                    <option value="واعتين">واعتين (وسط 95 | كبير 113 EGP)</option>
-                                    <option value="ميكسيكان مكس">ميكسيكان مكس (وسط 89 | كبير 118 EGP)</option>
-                                    <option value="ميكس جبن">ميكس جبن (وسط 80 | كبير 100 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🍳 كريب الفطار">
-                                    <option value="كريب بطاطس">كريب بطاطس (وسط 45 | كبير 56 EGP)</option>
-                                    <option value="كريب بطاطس بالبيض">كريب بطاطس بالبيض (وسط 56 | كبير 68 EGP)</option>
-                                    <option value="كريب بطاطس مدخن">كريب بطاطس مدخن (وسط 55 | كبير 68 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🍫 كريب الحلو">
-                                    <option value="كريب نيوتيلا">كريب نيوتيلا (90 EGP)</option>
-                                    <option value="كريب شيكولاته">كريب شيكولاته (50 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🧇 الوافل">
-                                    <option value="وافل نيوتيلا">وافل نيوتيلا (95 EGP)</option>
-                                    <option value="وافل شيكولاته">وافل شيكولاته (70 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🍔 تشيز برجر">
-                                    <option value="كلاسيك برجر">كلاسيك برجر (80 EGP)</option>
-                                    <option value="برجر إستوري">برجر إستوري (120 EGP)</option>
-                                </optgroup>
-                                <optgroup label="🍟 القسم السوري">
-                                    <option value="بطاطس سادة">بطاطس سادة (30 EGP)</option>
-                                    <option value="بطاطس موزاريلا">بطاطس موزاريلا (40 EGP)</option>
-                                    <option value="بطاطس سوسيس">بطاطس سوسيس (50 EGP)</option>
-                                    <option value="بطاطس برجر">بطاطس برجر (50 EGP)</option>
-                                    <option value="بطاطس بانية">بطاطس بانية (55 EGP)</option>
-                                    <option value="بطاطس إستريس">بطاطس إستريس (75 EGP)</option>
-                                </optgroup>
-                            </select>
-                        </div>
-
-                        <div class="form-group flex-1">
-                            <label for="order-qty">
-                                <span class="lang-ar">الكمية</span>
-                                <span class="lang-en">Qty</span>
-                            </label>
-                            <input type="number" id="order-qty" min="1" max="20" value="1" required>
-                        </div>
-                    </div>
-
-                    <!-- حجم الطلب: وسط أو كبير -->
-                    <div class="form-group" id="form-group-size" style="display: none;">
-                        <label>
-                            <span class="lang-ar">الحجم المطلوب</span>
-                            <span class="lang-en">Selected Size</span>
-                        </label>
-                        <div class="size-type-toggle">
-                            <button type="button" class="size-type-btn active" data-size="medium" id="btn-size-medium">
-                                <span class="lang-ar">وسط</span>
-                                <span class="lang-en">Medium</span>
-                            </button>
-                            <button type="button" class="size-type-btn" data-size="large" id="btn-size-large">
-                                <span class="lang-ar">كبير</span>
-                                <span class="lang-en">Large</span>
-                            </button>
-                        </div>
-                        <input type="hidden" id="order-size" value="medium">
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <span class="lang-ar">نوع الطلب</span>
-                            <span class="lang-en">Order Type</span>
-                        </label>
-                        <div class="order-type-toggle">
-                            <button type="button" class="order-type-btn active" data-type="delivery" id="btn-delivery">
-                                <i class="fa-solid fa-motorcycle"></i>
-                                <span class="lang-ar">توصيل (أوردر)</span>
-                                <span class="lang-en">Delivery</span>
-                            </button>
-                            <button type="button" class="order-type-btn" data-type="pickup" id="btn-pickup">
-                                <i class="fa-solid fa-store"></i>
-                                <span class="lang-ar">استلام من المحل</span>
-                                <span class="lang-en">Pickup</span>
-                            </button>
-                        </div>
-                        <input type="hidden" id="order-type" value="delivery">
-                    </div>
-
-                    <!-- طريقة الدفع: نقدي أو فودافون كاش -->
-                    <div class="form-group">
-                        <label>
-                            <span class="lang-ar">طريقة الدفع</span>
-                            <span class="lang-en">Payment Method</span>
-                        </label>
-                        <div class="payment-type-toggle">
-                            <button type="button" class="payment-type-btn active" data-pay="cash" id="btn-cash">
-                                <i class="fa-solid fa-money-bill-wave"></i>
-                                <span class="lang-ar">نقدي (كاش)</span>
-                                <span class="lang-en">Cash</span>
-                            </button>
-                            <button type="button" class="payment-type-btn" data-pay="vodafone" id="btn-vodafone">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                                <span class="lang-ar">فودافون كاش</span>
-                                <span class="lang-en">Vodafone Cash</span>
-                            </button>
-                        </div>
-                        <input type="hidden" id="payment-type" value="cash">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="order-notes">
-                            <span class="lang-ar">ملاحظات إضافية</span>
-                            <span class="lang-en">Special Requests</span>
-                        </label>
-                        <textarea id="order-notes" rows="3" placeholder="مثال: بدون بصل، زيادة شوكولاتة..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit-order btn-glow">
-                        <span class="lang-ar">إرسال الطلب للواتساب <i class="fa-brands fa-whatsapp"></i></span>
-                        <span class="lang-en">Send to WhatsApp <i class="fa-brands fa-whatsapp"></i></span>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <!-- 3. Digital Interactive Menu (والمنيو) -->
-        <section id="menu-section" class="menu-section reveal">
-            <h2 class="section-title">
-                <span class="lang-ar">منيو كريب ستوري 📖</span>
-                <span class="lang-en">Our Digital Menu 📖</span>
-            </h2>
-
-            <!-- Menu Tabs -->
-            <div class="menu-tabs">
-                <button class="tab-btn active" data-category="chicken">
-                    <span class="lang-ar">عشاق الدجاج 🍗</span>
-                    <span class="lang-en">Chicken 🍗</span>
-                </button>
-                <button class="tab-btn" data-category="meat">
-                    <span class="lang-ar">عشاق اللحوم 🥩</span>
-                    <span class="lang-en">Meat 🥩</span>
-                </button>
-                <button class="tab-btn" data-category="mix">
-                    <span class="lang-ar">ميكسات 🔥</span>
-                    <span class="lang-en">Mixes 🔥</span>
-                </button>
-                <button class="tab-btn" data-category="breakfast">
-                    <span class="lang-ar">كريب الفطار 🍳</span>
-                    <span class="lang-en">Breakfast 🍳</span>
-                </button>
-                <button class="tab-btn" data-category="sweet">
-                    <span class="lang-ar">كريب الحلو 🍫</span>
-                    <span class="lang-en">Sweet 🍫</span>
-                </button>
-                <button class="tab-btn" data-category="waffle">
-                    <span class="lang-ar">الوافل 🧇</span>
-                    <span class="lang-en">Waffle 🧇</span>
-                </button>
-                <button class="tab-btn" data-category="burger">
-                    <span class="lang-ar">تشيز برجر 🍔</span>
-                    <span class="lang-en">Burger 🍔</span>
-                </button>
-                <button class="tab-btn" data-category="syrian">
-                    <span class="lang-ar">القسم السوري 🍟</span>
-                    <span class="lang-en">Syrian 🍟</span>
-                </button>
-            </div>
-
-            <!-- Menu Grid — rendered by script.js -->
-            <div class="menu-grid" id="menu-grid">
-                <!-- Dynamically populated by JS -->
-            </div>
+        <!-- 3. Digital Interactive Menu Link -->
+        <section class="menu-link-section reveal">
+            <a href="menu.html" class="menu-title-link">
+                <h2 class="section-title section-title-gold menu-header-gold">
+                    <span class="lang-ar">المنيو 📖 <span class="menu-click-btn">اضغط لرؤية المنيو <i
+                                class="fa-solid fa-arrow-left"></i></span></span>
+                    <span class="lang-en">The Menu 📖 <span class="menu-click-btn">Click to View <i
+                                class="fa-solid fa-arrow-right"></i></span></span>
+                </h2>
+            </a>
         </section>
 
         <!-- Testimonials Section -->
@@ -521,7 +287,8 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 
 </html>
