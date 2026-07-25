@@ -2253,22 +2253,163 @@ body[dir="ltr"] .chip-card.selected::after {
 }
 
 @media (max-width: 480px) {
+    .builder-container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        padding-bottom: 140px !important;
+    }
+
+    .hero-section {
+        margin-bottom: 14px !important;
+    }
+
+    .brand-title {
+        font-size: 1.8rem !important;
+    }
+
+    .crepe-visual-stage {
+        margin-bottom: 16px;
+    }
+
     .stage-plate {
-        width: 170px;
-        height: 170px;
+        width: 155px;
+        height: 155px;
+        padding: 6px;
     }
+
     .crepe-base-art {
-        width: 135px;
-        height: 135px;
+        width: 125px;
+        height: 125px;
     }
+
     .visual-ingredient-chip {
+        font-size: 0.62rem;
+        padding: 2px 5px;
+        gap: 2px;
+    }
+
+    .stage-status-box {
+        margin-top: 10px;
+        font-size: 0.72rem;
+        padding: 4px 12px;
+        max-width: 94%;
+        text-align: center;
+    }
+
+    .builder-step-card {
+        padding: 12px 8px;
+        border-radius: 16px;
+    }
+
+    .step-badge {
+        font-size: 0.88rem;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+
+    .step-num {
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+    }
+
+    .step-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .chip-card {
+        padding: 10px 4px;
+        border-radius: 12px;
+    }
+
+    .chip-icon {
+        font-size: 1.25rem;
+    }
+
+    .chip-title {
+        font-size: 0.74rem;
+    }
+
+    .chip-desc {
+        font-size: 0.64rem;
+    }
+
+    .chip-price {
+        font-size: 0.7rem;
+    }
+
+    .size-selector-box {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    .size-label {
+        font-size: 0.78rem;
+    }
+
+    .btn-size-toggle {
+        padding: 5px 10px;
+        font-size: 0.74rem;
+    }
+
+    .builder-sticky-bar {
+        padding: 10px 10px 8px 10px;
+        border-radius: 16px 16px 0 0;
+        gap: 6px;
+    }
+
+    .summary-title {
+        font-size: 0.7rem;
+    }
+
+    .tag-pill {
         font-size: 0.65rem;
         padding: 2px 6px;
     }
-    .stage-status-box {
+
+    .total-amount {
+        font-size: 1.25rem;
+    }
+
+    .price-label {
         font-size: 0.75rem;
-        padding: 4px 12px;
+    }
+
+    .currency {
+        font-size: 0.7rem;
+    }
+
+    .builder-actions {
+        gap: 5px;
+    }
+
+    .btn-builder-action {
+        padding: 7px 9px;
+        font-size: 0.7rem;
+        border-radius: 20px;
     }
 }
+
+@media (max-width: 360px) {
+    .step-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .chip-card {
+        padding: 8px 2px;
+    }
+
+    .chip-title {
+        font-size: 0.68rem;
+    }
+
+    .btn-builder-action {
+        padding: 6px 7px;
+        font-size: 0.65rem;
+    }
+}
+
 
 
