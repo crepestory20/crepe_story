@@ -147,20 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bind all multi-select checkbox cards (Cheeses, Sauces, Extras, Sweet Toppings)
     const checkboxCards = document.querySelectorAll('.checkbox-card');
     checkboxCards.forEach(card => {
+        const input = card.querySelector('input[type="checkbox"]');
         card.addEventListener('click', (e) => {
-            const input = card.querySelector('input[type="checkbox"]');
-            if (e.target !== input) {
-                input.checked = !input.checked;
-            }
-            if (input.checked) {
-                card.classList.add('selected');
-                const icon = card.querySelector('.chip-icon')?.textContent || '✨';
-                const name = card.getAttribute('data-name-ar') || '';
-                triggerFloatingParticle(e, `+ ${icon} ${name}`);
-            } else {
-                card.classList.remove('selected');
-            }
-            calculateTotal();
+            // Give browser time to update checkbox checked status natively
+            setTimeout(() => {
+                if (input.checked) {
+                    card.classList.add('selected');
+                    const icon = card.querySelector('.chip-icon')?.textContent || '✨';
+                    const name = card.getAttribute('data-name-ar') || '';
+                    triggerFloatingParticle(e, `+ ${icon} ${name}`);
+                } else {
+                    card.classList.remove('selected');
+                }
+                calculateTotal();
+            }, 10);
         });
     });
 
