@@ -1,5 +1,5 @@
 // ==========================================
-// CUSTOM CREPE BUILDER INTERACTIVE LOGIC
+// CUSTOM CREPE BUILDER INTERACTIVE LOGIC & VISUAL STAGE
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnWa = document.getElementById('btn-builder-whatsapp');
     const btnCheckout = document.getElementById('btn-builder-checkout');
 
+    // Visual Stage Elements
+    const crepeBaseArt = document.getElementById('crepe-base-art');
+    const crepeLayersCanvas = document.getElementById('crepe-layers-canvas');
+    const crepeStatusTextAr = document.getElementById('crepe-status-text');
+    const crepeStatusTextEn = document.getElementById('crepe-status-text-en');
+
     // Current State
     let currentCategory = 'savory'; // 'savory' | 'sweet'
     let currentSize = 'medium'; // 'medium' | 'large'
@@ -36,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bind Category Radio Cards
     categoryCards.forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
             categoryCards.forEach(c => {
                 c.classList.remove('selected');
                 c.querySelector('input').checked = false;
@@ -46,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
             radio.checked = true;
             currentCategory = radio.value;
 
+            // Trigger visual particle effect
+            const icon = card.querySelector('.chip-icon')?.textContent || '🥞';
+            const title = card.querySelector('.chip-title')?.textContent || '';
+            triggerFloatingParticle(e, `${icon} ${title}`);
+
             // Update UI for selected category
             switchCategoryUI(currentCategory);
             calculateTotal();
@@ -54,11 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bind Size Toggle Buttons
     sizeToggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
             sizeToggleBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentSize = btn.getAttribute('data-size');
             currentBasePrice = parseInt(btn.getAttribute('data-price')) || 30;
+
+            const sizeText = currentSize === 'medium' ? 'حجم وسط' : 'حجم كبير';
+            triggerFloatingParticle(e, `📐 ${sizeText}`);
             calculateTotal();
         });
     });
@@ -79,6 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (step3TitleAr) step3TitleAr.textContent = 'الأجبان والتركي 🧀';
             if (step3TitleEn) step3TitleEn.textContent = 'Cheeses & Toppings 🧀';
+
+            if (crepeBaseArt) {
+                crepeBaseArt.className = 'crepe-base-art savory-base';
+            }
         } else {
             savoryFillingsSection.style.display = 'none';
             sweetFillingsSection.style.display = 'grid';
@@ -93,6 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (step3TitleAr) step3TitleAr.textContent = 'الفواكه والمكسرات 🍌🍓';
             if (step3TitleEn) step3TitleEn.textContent = 'Fruits & Sweets 🍌🍓';
+
+            if (crepeBaseArt) {
+                crepeBaseArt.className = 'crepe-base-art sweet-base';
+            }
         }
     }
 
@@ -100,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function bindRadioGroup(groupName, containerId) {
         const cards = document.querySelectorAll(`#${containerId} .option-card`);
         cards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
                 cards.forEach(c => {
                     c.classList.remove('selected');
                     const inp = c.querySelector('input');
@@ -109,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.classList.add('selected');
                 const radio = card.querySelector('input');
                 if (radio) radio.checked = true;
+
+                const icon = card.querySelector('.chip-icon')?.textContent || '✨';
+                const name = card.getAttribute('data-name-ar') || '';
+                triggerFloatingParticle(e, `${icon} ${name}`);
+
                 calculateTotal();
             });
         });
@@ -121,13 +148,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkboxCards = document.querySelectorAll('.checkbox-card');
     checkboxCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            // Prevent default double toggling if clicking directly on input
             const input = card.querySelector('input[type="checkbox"]');
             if (e.target !== input) {
                 input.checked = !input.checked;
             }
             if (input.checked) {
                 card.classList.add('selected');
+                const icon = card.querySelector('.chip-icon')?.textContent || '✨';
+                const name = card.getAttribute('data-name-ar') || '';
+                triggerFloatingParticle(e, `+ ${icon} ${name}`);
             } else {
                 card.classList.remove('selected');
             }
@@ -135,10 +164,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Particle Effect Emitter
+    function triggerFloatingParticle(event, text) {
+        if (!event) return;
+        const x = event.clientX || window.innerWidth / 2;
+        const y = event.clientY || window.innerHeight / 2;
+
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.textContent = text;
+        particle.style.left = `${x - 20}px`;
+        particle.style.top = `${y - 20}px`;
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 750);
+    }
+
     // Main calculation and summary builder function
     function calculateTotal() {
         let total = currentBasePrice;
         const selectedSummaryItems = [];
+        const visualChips = [];
         const isAr = (document.body.getAttribute('data-lang') || 'ar') === 'ar';
 
         // Add size & category to summary tags
@@ -151,10 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeFillingCard = document.querySelector(`#${fillingContainerId} .option-card.selected`);
         if (activeFillingCard) {
             const price = parseInt(activeFillingCard.getAttribute('data-price')) || 0;
-            const name = isAr ? activeFillingCard.getAttribute('data-name-ar') : activeFillingCard.getAttribute('data-name-en');
+            const nameAr = activeFillingCard.getAttribute('data-name-ar');
+            const nameEn = activeFillingCard.getAttribute('data-name-en');
+            const icon = activeFillingCard.querySelector('.chip-icon')?.textContent || '🍗';
+            const name = isAr ? nameAr : nameEn;
             total += price;
             if (name && !name.includes('بدون')) {
                 selectedSummaryItems.push(name);
+                visualChips.push({ icon, name });
             }
         }
 
@@ -164,9 +217,15 @@ document.addEventListener('DOMContentLoaded', () => {
         activeCheeses.forEach(inp => {
             const card = inp.closest('.checkbox-card');
             const price = parseInt(card.getAttribute('data-price')) || 0;
-            const name = isAr ? card.getAttribute('data-name-ar') : card.getAttribute('data-name-en');
+            const nameAr = card.getAttribute('data-name-ar');
+            const nameEn = card.getAttribute('data-name-en');
+            const icon = card.querySelector('.chip-icon')?.textContent || '🧀';
+            const name = isAr ? nameAr : nameEn;
             total += price;
-            if (name) selectedSummaryItems.push(name);
+            if (name) {
+                selectedSummaryItems.push(name);
+                visualChips.push({ icon, name });
+            }
         });
 
         // 3. Sauces
@@ -175,9 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
         activeSauces.forEach(inp => {
             const card = inp.closest('.checkbox-card');
             const price = parseInt(card.getAttribute('data-price')) || 0;
-            const name = isAr ? card.getAttribute('data-name-ar') : card.getAttribute('data-name-en');
+            const nameAr = card.getAttribute('data-name-ar');
+            const nameEn = card.getAttribute('data-name-en');
+            const icon = card.querySelector('.chip-icon')?.textContent || '🥛';
+            const name = isAr ? nameAr : nameEn;
             total += price;
-            if (name) selectedSummaryItems.push(name);
+            if (name) {
+                selectedSummaryItems.push(name);
+                visualChips.push({ icon, name });
+            }
         });
 
         // 4. Savory Extras
@@ -186,9 +251,15 @@ document.addEventListener('DOMContentLoaded', () => {
             activeExtras.forEach(inp => {
                 const card = inp.closest('.checkbox-card');
                 const price = parseInt(card.getAttribute('data-price')) || 0;
-                const name = isAr ? card.getAttribute('data-name-ar') : card.getAttribute('data-name-en');
+                const nameAr = card.getAttribute('data-name-ar');
+                const nameEn = card.getAttribute('data-name-en');
+                const icon = card.querySelector('.chip-icon')?.textContent || '🍟';
+                const name = isAr ? nameAr : nameEn;
                 total += price;
-                if (name) selectedSummaryItems.push(name);
+                if (name) {
+                    selectedSummaryItems.push(name);
+                    visualChips.push({ icon, name });
+                }
             });
         }
 
@@ -204,7 +275,37 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
         }
 
+        // Render Visual Crepe Layers Canvas
+        updateCrepeVisualStage(visualChips, isAr);
+
         return { total, selectedSummaryItems };
+    }
+
+    // Update Visual Crepe Stage Canvas & Status Text
+    function updateCrepeVisualStage(chips, isAr) {
+        if (!crepeLayersCanvas) return;
+
+        // Render pop chips inside the crepe circle
+        if (chips.length === 0) {
+            crepeLayersCanvas.innerHTML = `<span style="font-size:0.75rem; opacity:0.65; color:#fff;">(الكريب فارغ، أضف الحشوة)</span>`;
+        } else {
+            crepeLayersCanvas.innerHTML = chips.map(c => `
+                <span class="visual-ingredient-chip"><span>${c.icon}</span> <span>${c.name}</span></span>
+            `).join('');
+        }
+
+        // Update Status Text
+        if (crepeStatusTextAr && crepeStatusTextEn) {
+            const itemsCount = chips.length;
+            if (itemsCount === 0) {
+                crepeStatusTextAr.textContent = 'كريب ذهبي مقرمش جاهز للإضافة...';
+                crepeStatusTextEn.textContent = 'Crispy golden crepe ready for toppings...';
+            } else {
+                const summaryStr = chips.map(c => c.name).join(' + ');
+                crepeStatusTextAr.textContent = `الكريب محشو بـ (${summaryStr}) 🔥`;
+                crepeStatusTextEn.textContent = `Crepe filled with (${summaryStr}) 🔥`;
+            }
+        }
     }
 
     // Helper to get formatted order string
