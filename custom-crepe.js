@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCheckout = document.getElementById('btn-builder-checkout');
 
     // Visual Stage Elements
-    const crepeRealImg = document.getElementById('crepe-real-img');
+    const crepeBaseArt = document.getElementById('crepe-base-art');
     const crepeLayersCanvas = document.getElementById('crepe-layers-canvas');
     const crepeStatusTextAr = document.getElementById('crepe-status-text');
     const crepeStatusTextEn = document.getElementById('crepe-status-text-en');
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             step5Container.style.display = 'block';
 
-            if (step3TitleAr) step3TitleAr.textContent = 'الأجبان والتركي (اختياري) 🧀';
-            if (step3TitleEn) step3TitleEn.textContent = 'Cheeses & Toppings (Optional) 🧀';
+            if (step3TitleAr) step3TitleAr.textContent = 'الأجبان والتركي 🧀';
+            if (step3TitleEn) step3TitleEn.textContent = 'Cheeses & Toppings 🧀';
 
-            if (crepeRealImg) {
-                crepeRealImg.src = 'assets/builder_crepe_plate.png';
+            if (crepeBaseArt) {
+                crepeBaseArt.className = 'crepe-base-art savory-base';
             }
         } else {
             savoryFillingsSection.style.display = 'none';
@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             step5Container.style.display = 'none';
 
-            if (step3TitleAr) step3TitleAr.textContent = 'الفواكه والمكسرات (اختياري) 🍌🍓';
-            if (step3TitleEn) step3TitleEn.textContent = 'Fruits & Sweets (Optional) 🍌🍓';
+            if (step3TitleAr) step3TitleAr.textContent = 'الفواكه والمكسرات 🍌🍓';
+            if (step3TitleEn) step3TitleEn.textContent = 'Fruits & Sweets 🍌🍓';
 
-            if (crepeRealImg) {
-                crepeRealImg.src = 'assets/builder_sweet_crepe_plate.png';
+            if (crepeBaseArt) {
+                crepeBaseArt.className = 'crepe-base-art sweet-base';
             }
         }
     }
