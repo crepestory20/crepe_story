@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="اصنع كريبك بنفسك في مطعم CRÊPE STORY - اختر الحشوات والجبن والصوصات المفضلة لديك وسنحضره لك طازجاً.">
+    <meta name="keywords" content="اصنع كريبك بنفسك, كريب مخصص, crepe story egypt, كريب حادق, كريب حلو">
+    
+    <title>CRÊPE STORY | اصنع كريبك بنفسك 🥞</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+
+<body data-lang="ar">
+
+    <!-- Floating Language Switcher -->
+    <div class="lang-switch-container">
+        <button id="lang-btn" class="lang-btn">
+            <span class="lang-ar">English <i class="fa-solid fa-globe"></i></span>
+            <span class="lang-en">العربية <i class="fa-solid fa-globe"></i></span>
+        </button>
+    </div>
+
+    <!-- Theme Color Switcher -->
+    <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير لون الخلفية">🎨</button>
+        <div class="theme-dots" id="theme-dots">
+            <button class="theme-dot active" data-theme="midnight" style="background:#0B1215;" title="Midnight"></button>
+            <button class="theme-dot" data-theme="ocean" style="background:#0D1B2A;" title="Ocean"></button>
+            <button class="theme-dot" data-theme="forest" style="background:#0A1A0F;" title="Forest"></button>
+            <button class="theme-dot" data-theme="espresso" style="background:#1A0F0A;" title="Espresso"></button>
+            <button class="theme-dot" data-theme="plum" style="background:#160D24;" title="Plum"></button>
+            <button class="theme-dot" data-theme="slate" style="background:#141820;" title="Slate"></button>
+        </div>
+    </div>
+
+    <!-- Luxury Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="container builder-container">
+
+        <!-- Back Button & Header -->
+        <div class="builder-header">
+            <a href="index.html" class="btn-back">
+                <span class="lang-ar"><i class="fa-solid fa-arrow-right"></i> العودة للرئيسية</span>
+                <span class="lang-en">Back to Home <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <div class="hero-section text-center" style="margin-bottom: 24px;">
+            <div class="logo-wrapper" style="width: 90px; height: 90px; margin-bottom: 12px;">
+                <img src="logo.jpg" alt="CRÊPE STORY Logo" class="brand-logo">
+            </div>
+            <h1 class="brand-title font-en" style="font-size: 2.2rem;">CRÊPE STORY</h1>
+            <h2 class="section-title section-title-gold" style="margin-top: 10px; margin-bottom: 8px;">
+                <span class="lang-ar">اصنع كريبك بنفسك 🥞</span>
+                <span class="lang-en">Build Your Own Crepe 🥞</span>
+            </h2>
+            <p class="welcome-text" style="font-size: 0.9rem; opacity: 0.9;">
+                <span class="lang-ar">اختر نوع العجينة والحشوة والمكونات المفضلة لديك وسنجهزه لك بخلطتك الخاصة!</span>
+                <span class="lang-en">Craft your customized crepe with your favorite ingredients, cheeses, and sauces!</span>
+            </p>
+        </div>
+
+        <!-- Interactive Builder Wizard -->
+        <div class="builder-wizard">
+
+            <!-- STEP 1: Crepe Type & Base Size -->
+            <div class="builder-step-card reveal active">
+                <div class="step-badge">
+                    <span class="step-num">1</span>
+                    <span class="lang-ar">نوع الكريب والحجم 📐</span>
+                    <span class="lang-en">Crepe Category & Size 📐</span>
+                </div>
+
+                <div class="step-options-grid">
+                    <label class="chip-card option-card selected" data-group="crepeCategory" data-val="savory" data-price-med="30" data-price-lg="40">
+                        <input type="radio" name="crepeCategory" value="savory" checked>
+                        <div class="chip-icon">🧀</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">كريب حادق</span>
+                            <span class="chip-title lang-en">Savory Crepe</span>
+                            <span class="chip-desc lang-ar">عجينة حادقة ذهبية طازجة</span>
+                            <span class="chip-desc lang-en">Golden savory crispy crepe</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="crepeCategory" data-val="sweet" data-price-med="30" data-price-lg="40">
+                        <input type="radio" name="crepeCategory" value="sweet">
+                        <div class="chip-icon">🍫</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">كريب حلو</span>
+                            <span class="chip-title lang-en">Sweet Crepe</span>
+                            <span class="chip-desc lang-ar">عجينة حلوة هشة ولذيذة</span>
+                            <span class="chip-desc lang-en">Fluffy sweet dessert crepe</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Size selector -->
+                <div class="size-selector-box" style="margin-top: 16px;">
+                    <span class="size-label lang-ar">اختر الحجم:</span>
+                    <span class="size-label lang-en">Select Size:</span>
+                    <div class="size-toggle-buttons">
+                        <button type="button" class="btn-size-toggle active" data-size="medium" data-price="30">
+                            <span class="lang-ar">وسط (30 ج)</span>
+                            <span class="lang-en">Medium (30 EGP)</span>
+                        </button>
+                        <button type="button" class="btn-size-toggle" data-size="large" data-price="40">
+                            <span class="lang-ar">كبير (40 ج)</span>
+                            <span class="lang-en">Large (40 EGP)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Main Filling (Dynamic based on Category) -->
+            <div class="builder-step-card reveal active">
+                <div class="step-badge">
+                    <span class="step-num">2</span>
+                    <span class="lang-ar">الحشوة الأساسية 🍗🍫</span>
+                    <span class="lang-en">Main Filling 🍗🍫</span>
+                </div>
+
+                <!-- Savory Fillings -->
+                <div id="savory-fillings" class="step-options-grid">
+                    <label class="chip-card option-card selected" data-group="mainFilling" data-name-ar="دجاج كرانشي" data-name-en="Crunchy Chicken" data-price="40">
+                        <input type="radio" name="mainFilling" value="دجاج كرانشي" checked>
+                        <div class="chip-icon">🍗</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">دجاج كرانشي</span>
+                            <span class="chip-title lang-en">Crunchy Chicken</span>
+                            <span class="chip-price">+40 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="دجاج فاهيتا" data-name-en="Fajita Chicken" data-price="40">
+                        <input type="radio" name="mainFilling" value="دجاج فاهيتا">
+                        <div class="chip-icon">🌶️</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">دجاج فاهيتا جريل</span>
+                            <span class="chip-title lang-en">Grilled Fajita</span>
+                            <span class="chip-price">+40 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="زنجر حار" data-name-en="Hot Zinger" data-price="40">
+                        <input type="radio" name="mainFilling" value="زنجر حار">
+                        <div class="chip-icon">🔥</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">زنجر حار</span>
+                            <span class="chip-title lang-en">Spicy Zinger</span>
+                            <span class="chip-price">+40 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="باني مقرمش" data-name-en="Crispy Bania" data-price="35">
+                        <input type="radio" name="mainFilling" value="باني مقرمش">
+                        <div class="chip-icon">🥖</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">باني مقرمش</span>
+                            <span class="chip-title lang-en">Crispy Bania</span>
+                            <span class="chip-price">+35 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="سوسيس ممتاز" data-name-en="Premium Sausage" data-price="35">
+                        <input type="radio" name="mainFilling" value="سوسيس ممتاز">
+                        <div class="chip-icon">🌭</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">سوسيس ممتاز</span>
+                            <span class="chip-title lang-en">Premium Sausage</span>
+                            <span class="chip-price">+35 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="كفتة جريل" data-name-en="Grilled Kofta" data-price="35">
+                        <input type="radio" name="mainFilling" value="كفتة جريل">
+                        <div class="chip-icon">🥩</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">كفتة جريل</span>
+                            <span class="chip-title lang-en">Grilled Kofta</span>
+                            <span class="chip-price">+35 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="تونة فاخرة" data-name-en="Premium Tuna" data-price="40">
+                        <input type="radio" name="mainFilling" value="تونة فاخرة">
+                        <div class="chip-icon">🐟</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">تونة فاخرة</span>
+                            <span class="chip-title lang-en">Premium Tuna</span>
+                            <span class="chip-price">+40 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="ميكس لحوم" data-name-en="Mix Meats" data-price="50">
+                        <input type="radio" name="mainFilling" value="ميكس لحوم">
+                        <div class="chip-icon">👑</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">ميكس لحوم سوبر</span>
+                            <span class="chip-title lang-en">Super Mix Meats</span>
+                            <span class="chip-price">+50 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="mainFilling" data-name-ar="بدون لحوم" data-name-en="No Meat Base" data-price="0">
+                        <input type="radio" name="mainFilling" value="بدون لحوم">
+                        <div class="chip-icon">🥬</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">بدون لحوم (جبن وخضار فقط)</span>
+                            <span class="chip-title lang-en">Veggie / Cheese Only</span>
+                            <span class="chip-price">0 EGP</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Sweet Fillings -->
+                <div id="sweet-fillings" class="step-options-grid" style="display: none;">
+                    <label class="chip-card option-card selected" data-group="sweetFilling" data-name-ar="نوتيلا فاخرة" data-name-en="Nutella" data-price="35">
+                        <input type="radio" name="sweetFilling" value="نوتيلا فاخرة" checked>
+                        <div class="chip-icon">🍫</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">نوتيلا فاخرة</span>
+                            <span class="chip-title lang-en">Rich Nutella</span>
+                            <span class="chip-price">+35 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="sweetFilling" data-name-ar="زبدة لوتس" data-name-en="Lotus Biscoff" data-price="40">
+                        <input type="radio" name="sweetFilling" value="زبدة لوتس">
+                        <div class="chip-icon">🍪</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">زبدة لوتس أصلي</span>
+                            <span class="chip-title lang-en">Lotus Biscoff</span>
+                            <span class="chip-price">+40 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="sweetFilling" data-name-ar="فسدق / بستاشيو" data-name-en="Pistachio Cream" data-price="45">
+                        <input type="radio" name="sweetFilling" value="فسدق / بستاشيو">
+                        <div class="chip-icon">🟢</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">زبدة فستق بستاشيو</span>
+                            <span class="chip-title lang-en">Pistachio Cream</span>
+                            <span class="chip-price">+45 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="sweetFilling" data-name-ar="شيكولاتة بيضاء" data-name-en="White Chocolate" data-price="30">
+                        <input type="radio" name="sweetFilling" value="شيكولاتة بيضاء">
+                        <div class="chip-icon">⚪</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">شيكولاتة بيضاء</span>
+                            <span class="chip-title lang-en">White Chocolate</span>
+                            <span class="chip-price">+30 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card option-card" data-group="sweetFilling" data-name-ar="عسل ومكسرات" data-name-en="Honey & Nuts" data-price="35">
+                        <input type="radio" name="sweetFilling" value="عسل ومكسرات">
+                        <div class="chip-icon">🍯</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">عسل نقي مع مكسرات</span>
+                            <span class="chip-title lang-en">Pure Honey & Nuts</span>
+                            <span class="chip-price">+35 EGP</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- STEP 3: Cheeses or Sweet Toppings -->
+            <div class="builder-step-card reveal active">
+                <div class="step-badge">
+                    <span class="step-num">3</span>
+                    <span id="step3-title-ar" class="lang-ar">الأجبان والتركي 🧀</span>
+                    <span id="step3-title-en" class="lang-en">Cheeses & Toppings 🧀</span>
+                </div>
+
+                <!-- Savory Cheeses -->
+                <div id="savory-cheeses" class="step-options-grid">
+                    <label class="chip-card checkbox-card selected" data-name-ar="ميكس جبن (موتزاريلا+شيدر+رومي)" data-name-en="Mix Cheese" data-price="25">
+                        <input type="checkbox" name="savoryCheese" value="ميكس جبن" checked>
+                        <div class="chip-icon">🧀</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">ميكس جبن (موتزاريلا + شيدر + رومي)</span>
+                            <span class="chip-title lang-en">Mix Cheese (Mozzarella, Cheddar, Rumi)</span>
+                            <span class="chip-price">+25 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="موتزاريلا إضافية" data-name-en="Extra Mozzarella" data-price="15">
+                        <input type="checkbox" name="savoryCheese" value="موتزاريلا إضافية">
+                        <div class="chip-icon">🍕</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">جبن موتزاريلا ذائبة إضافية</span>
+                            <span class="chip-title lang-en">Extra Mozzarella</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="شيدر صوص / شرائح" data-name-en="Cheddar Slice" data-price="15">
+                        <input type="checkbox" name="savoryCheese" value="شيدر صوص">
+                        <div class="chip-icon">🟡</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">جبن شيدر ذائبة</span>
+                            <span class="chip-title lang-en">Melted Cheddar</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="تركي مدخن" data-name-en="Smoked Turkey" data-price="20">
+                        <input type="checkbox" name="savoryCheese" value="تركي مدخن">
+                        <div class="chip-icon">🥓</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">شرائح تركي مدخن</span>
+                            <span class="chip-title lang-en">Smoked Turkey Slices</span>
+                            <span class="chip-price">+20 EGP</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Sweet Fruits & Toppings -->
+                <div id="sweet-toppings" class="step-options-grid" style="display: none;">
+                    <label class="chip-card checkbox-card selected" data-name-ar="قطع موز طازجة" data-name-en="Fresh Banana" data-price="15">
+                        <input type="checkbox" name="sweetTopping" value="قطع موز طازجة" checked>
+                        <div class="chip-icon">🍌</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">قطع موز طازجة</span>
+                            <span class="chip-title lang-en">Fresh Banana Slices</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="قطع فراولة" data-name-en="Strawberries" data-price="15">
+                        <input type="checkbox" name="sweetTopping" value="قطع فراولة">
+                        <div class="chip-icon">🍓</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">قطع فراولة طازجة</span>
+                            <span class="chip-title lang-en">Fresh Strawberries</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="اوريو مطحون" data-name-en="Crushed Oreo" data-price="15">
+                        <input type="checkbox" name="sweetTopping" value="اوريو مطحون">
+                        <div class="chip-icon">🍪</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">بسكويت اوريو مقرمش</span>
+                            <span class="chip-title lang-en">Crushed Oreo Cookies</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="مكسرات (بندق وكاجو)" data-name-en="Mixed Nuts" data-price="20">
+                        <input type="checkbox" name="sweetTopping" value="مكسرات">
+                        <div class="chip-icon">🥜</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">مكسرات محمصة (بندق وكاجو)</span>
+                            <span class="chip-title lang-en">Roasted Nuts (Hazelnut & Cashew)</span>
+                            <span class="chip-price">+20 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="مارشميلو" data-name-en="Marshmallow" data-price="10">
+                        <input type="checkbox" name="sweetTopping" value="مارشميلو">
+                        <div class="chip-icon">🍡</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">قطع مارشميلو ملونة</span>
+                            <span class="chip-title lang-en">Fluffy Marshmallows</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- STEP 4: Sauces -->
+            <div class="builder-step-card reveal active">
+                <div class="step-badge">
+                    <span class="step-num">4</span>
+                    <span class="lang-ar">الصوصات والنكهات 🍯</span>
+                    <span class="lang-en">Sauces & Dips 🍯</span>
+                </div>
+
+                <!-- Savory Sauces -->
+                <div id="savory-sauces" class="step-options-grid">
+                    <label class="chip-card checkbox-card selected" data-name-ar="مايونيز" data-name-en="Mayonnaise" data-price="0">
+                        <input type="checkbox" name="savorySauce" value="مايونيز" checked>
+                        <div class="chip-icon">⚪</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">مايونيز كريمي</span>
+                            <span class="chip-title lang-en">Creamy Mayo</span>
+                            <span class="chip-price">مجاناً</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card selected" data-name-ar="كاتشب" data-name-en="Ketchup" data-price="0">
+                        <input type="checkbox" name="savorySauce" value="كاتشب" checked>
+                        <div class="chip-icon">🔴</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">كاتشب</span>
+                            <span class="chip-title lang-en">Tomato Ketchup</span>
+                            <span class="chip-price">مجاناً</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="صوص رانش" data-name-en="Ranch Sauce" data-price="10">
+                        <input type="checkbox" name="savorySauce" value="صوص رانش">
+                        <div class="chip-icon">🥛</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">صوص رانش أمريكي</span>
+                            <span class="chip-title lang-en">Ranch Dressing</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="ثومية ممتازة" data-name-en="Garlic Sauce" data-price="10">
+                        <input type="checkbox" name="savorySauce" value="ثومية ممتازة">
+                        <div class="chip-icon">🧄</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">ثومية سوريه غنية</span>
+                            <span class="chip-title lang-en">Garlic Dip</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="صوص باربيكيو" data-name-en="BBQ Sauce" data-price="10">
+                        <input type="checkbox" name="savorySauce" value="صوص باربيكيو">
+                        <div class="chip-icon">🤎</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">صوص باربيكيو مدخن</span>
+                            <span class="chip-title lang-en">Smoky BBQ Sauce</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="صوص حار (سبايسي)" data-name-en="Hot Sauce" data-price="5">
+                        <input type="checkbox" name="savorySauce" value="صوص حار">
+                        <div class="chip-icon">🌶️</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">صوص فلفل حار سبايسي</span>
+                            <span class="chip-title lang-en">Extra Hot Sauce</span>
+                            <span class="chip-price">+5 EGP</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Sweet Sauces -->
+                <div id="sweet-sauces" class="step-options-grid" style="display: none;">
+                    <label class="chip-card checkbox-card selected" data-name-ar="صوص كراميل" data-name-en="Caramel Sauce" data-price="10">
+                        <input type="checkbox" name="sweetSauce" value="صوص كراميل" checked>
+                        <div class="chip-icon">🍯</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">صوص كراميل ذهبي</span>
+                            <span class="chip-title lang-en">Golden Caramel</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="صوص شيكولاتة داكنة" data-name-en="Dark Chocolate" data-price="10">
+                        <input type="checkbox" name="sweetSauce" value="صوص شيكولاتة داكنة">
+                        <div class="chip-icon">🍫</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">صوص شيكولاتة غامقة</span>
+                            <span class="chip-title lang-en">Dark Chocolate Drizzle</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="صوص عسل نقي" data-name-en="Pure Honey" data-price="10">
+                        <input type="checkbox" name="sweetSauce" value="صوص عسل نقي">
+                        <div class="chip-icon">🐝</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">قطرات عسل نقي</span>
+                            <span class="chip-title lang-en">Pure Honey Drizzle</span>
+                            <span class="chip-price">+10 EGP</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- STEP 5: Crunchy & Veggie Extras (Savory Only) -->
+            <div id="step5-container" class="builder-step-card reveal active">
+                <div class="step-badge">
+                    <span class="step-num">5</span>
+                    <span class="lang-ar">الخضار والإضافات المقرمشة 🍟</span>
+                    <span class="lang-en">Crunchy Extras & Veggies 🍟</span>
+                </div>
+
+                <div class="step-options-grid">
+                    <label class="chip-card checkbox-card" data-name-ar="بطاطس فارم داخل الكريب" data-name-en="Fries Inside Crepe" data-price="15">
+                        <input type="checkbox" name="savoryExtra" value="بطاطس فارم داخل الكريب">
+                        <div class="chip-icon">🍟</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">بطاطس مقلية فارم فريتس داخل الكريب</span>
+                            <span class="chip-title lang-en">Golden French Fries Inside</span>
+                            <span class="chip-price">+15 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card selected" data-name-ar="فلفل ألوان" data-name-en="Bell Peppers" data-price="5">
+                        <input type="checkbox" name="savoryExtra" value="فلفل ألوان" checked>
+                        <div class="chip-icon">🫑</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">شرائح فلفل ألوان</span>
+                            <span class="chip-title lang-en">Sliced Bell Peppers</span>
+                            <span class="chip-price">+5 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card selected" data-name-ar="زيتون أسود" data-name-en="Black Olives" data-price="5">
+                        <input type="checkbox" name="savoryExtra" value="زيتون أسود" checked>
+                        <div class="chip-icon">🫒</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">زيتون أسود مخلي</span>
+                            <span class="chip-title lang-en">Sliced Black Olives</span>
+                            <span class="chip-price">+5 EGP</span>
+                        </div>
+                    </label>
+
+                    <label class="chip-card checkbox-card" data-name-ar="هالبينو حار" data-name-en="Pickled Jalapeño" data-price="5">
+                        <input type="checkbox" name="savoryExtra" value="هالبينو حار">
+                        <div class="chip-icon">🔥</div>
+                        <div class="chip-info">
+                            <span class="chip-title lang-ar">شرائح هالبينو مخلل سبايسي</span>
+                            <span class="chip-title lang-en">Pickled Jalapeño Slices</span>
+                            <span class="chip-price">+5 EGP</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+        </div><!-- /builder-wizard -->
+
+        <!-- Floating Sticky Order Summary Bar -->
+        <div class="builder-sticky-bar">
+            <div class="summary-details">
+                <div class="summary-title font-en">
+                    <span class="lang-ar">خلطتك الخاصة:</span>
+                    <span class="lang-en">Your Custom Crepe:</span>
+                </div>
+                <div id="crepe-summary-tags" class="summary-tags">
+                    <!-- Dynamic tag pills will render here -->
+                </div>
+            </div>
+
+            <div class="summary-total-group">
+                <div class="price-box">
+                    <span class="price-label lang-ar">الإجمالي:</span>
+                    <span class="price-label lang-en">Total:</span>
+                    <span id="builder-total-price" class="total-amount">95</span>
+                    <span class="currency font-en">EGP</span>
+                </div>
+
+                <div class="builder-actions">
+                    <button type="button" id="btn-builder-whatsapp" class="btn-builder-action btn-wa-direct">
+                        <span class="lang-ar"><i class="fa-brands fa-whatsapp"></i> طلب مباشر</span>
+                        <span class="lang-en"><i class="fa-brands fa-whatsapp"></i> Order Direct</span>
+                    </button>
+                    <button type="button" id="btn-builder-checkout" class="btn-builder-action btn-checkout-form">
+                        <span class="lang-ar"><i class="fa-solid fa-list-check"></i> استكمال الطلب</span>
+                        <span class="lang-en"><i class="fa-solid fa-list-check"></i> Checkout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-section reveal" style="margin-top: 40px;">
+            <p class="footer-thanks">CRÊPE STORY ❤️</p>
+            <p class="footer-copyright font-en">&copy; 2026 CRÊPE STORY. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Builder JavaScript Logic -->
+    <script src="script.js?v=5"></script>
+    <script src="custom-crepe.js?v=1"></script>
+</body>
+
+</html>
