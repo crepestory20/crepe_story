@@ -163,23 +163,89 @@ function bindOrderButtons() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // 0a. DOOR SPLASH SCREEN
+    // 0a. PARTICLE DISSOLVE SPLASH SCREEN
     // ==========================================
     const splash = document.getElementById('door-splash');
     if (splash) {
-        // Prevent scrolling while splash is open
         document.body.style.overflow = 'hidden';
 
-        // After 1.8s → trigger the door-open animation
         setTimeout(() => {
-            splash.classList.add('open');
+            // 1. Fade out the logo
+            const logoWrap = document.getElementById('door-logo-wrap');
+            if (logoWrap) logoWrap.classList.add('dissolving');
 
-            // After animation finishes (1.1s transition) → hide the overlay
+            // 2. Build the particle grid
+            const layer = document.createElement('div');
+            layer.className = 'particles-layer';
+            splash.appendChild(layer);
+
+            const CELL = 55; // size of each particle tile (px)
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+            const cols = Math.ceil(W / CELL) + 1;
+            const rows = Math.ceil(H / CELL) + 1;
+            const pw = Math.ceil(W / cols);
+            const ph = Math.ceil(H / rows);
+            const cx = W / 2;
+            const cy = H / 2;
+            const maxDist = Math.sqrt(cx * cx + cy * cy);
+
+            // Build fragment for performance
+            const frag = document.createDocumentFragment();
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const p = document.createElement('div');
+
+                    // Gold tint: ~15% gold, ~10% gold-dim, rest dark
+                    const roll = Math.random();
+                    if (roll < 0.10)      p.className = 'splash-particle gold';
+                    else if (roll < 0.22) p.className = 'splash-particle gold-dim';
+                    else                  p.className = 'splash-particle';
+
+                    const px = c * pw;
+                    const py = r * ph;
+                    p.style.left   = px + 'px';
+                    p.style.top    = py + 'px';
+                    p.style.width  = pw + 'px';
+                    p.style.height = ph + 'px';
+
+                    // Direction: fly outward from center
+                    const dx    = (px + pw / 2) - cx;
+                    const dy    = (py + ph / 2) - cy;
+                    const dist  = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx);
+                    // Particles near center travel slower, edges faster
+                    const speed = 220 + (dist / maxDist) * 480 + Math.random() * 120;
+                    const tx    = Math.cos(angle) * speed;
+                    const ty    = Math.sin(angle) * speed;
+                    const rot   = (Math.random() - 0.5) * 600;
+                    // Delay: center first (ripple outward)
+                    const delay = (dist / maxDist) * 0.22 + Math.random() * 0.08;
+                    const dur   = 0.75 + Math.random() * 0.3;
+
+                    p.style.setProperty('--tx',    tx + 'px');
+                    p.style.setProperty('--ty',    ty + 'px');
+                    p.style.setProperty('--rot',   rot + 'deg');
+                    p.style.setProperty('--delay', delay + 's');
+                    p.style.setProperty('--dur',   dur + 's');
+                    p.style.animationDelay    = delay + 's';
+                    p.style.animationDuration = dur + 's';
+
+                    frag.appendChild(p);
+                }
+            }
+
+            layer.appendChild(frag);
+
+            // 3. Remove splash after all particles have flown
+            //    Max delay (~0.30s) + max duration (~1.05s) + small buffer
             setTimeout(() => {
                 splash.classList.add('hidden');
                 document.body.style.overflow = '';
-            }, 1150);
-        }, 1800);
+            }, 1500);
+
+        }, 1900);
     }
 
     // ==========================================
