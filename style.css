@@ -2573,12 +2573,11 @@ body[dir="ltr"] .chip-card.selected::after {
     }
 }
 
-
 /* ==========================================
    DOOR SPLASH SCREEN
    ========================================== */
 
-/* Overlay that blocks scrolling while splash is active */
+/* Full-screen overlay */
 .door-splash {
     position: fixed;
     inset: 0;
@@ -2588,7 +2587,7 @@ body[dir="ltr"] .chip-card.selected::after {
     overflow: hidden;
 }
 
-/* Both panels share base styles */
+/* Both panels */
 .door-panel {
     position: relative;
     width: 50%;
@@ -2600,7 +2599,7 @@ body[dir="ltr"] .chip-card.selected::after {
     overflow: hidden;
 }
 
-/* Subtle gold shimmer on each panel */
+/* Gold shimmer on each panel */
 .door-panel::before {
     content: '';
     position: absolute;
@@ -2611,7 +2610,7 @@ body[dir="ltr"] .chip-card.selected::after {
     pointer-events: none;
 }
 
-/* Thin golden center seam (visible between the two panels) */
+/* Thin golden center seam */
 .door-left::after {
     content: '';
     position: absolute;
@@ -2628,81 +2627,98 @@ body[dir="ltr"] .chip-card.selected::after {
     z-index: 2;
 }
 
-/* ---- Logo wrap sits centered across both panels ---- */
+/* Logo centered above BOTH panels — sibling element, not inside a panel */
 .door-logo-wrap {
     position: absolute;
-    /* Center horizontally: left panel is 50% wide, so the center of the screen
-       is at the far right edge of the left panel → right: 0; then push via transform */
     top: 50%;
-    right: -50vw; /* reaches the center of the viewport */
-    transform: translate(50%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    z-index: 10;
+    gap: 16px;
+    z-index: 200;
     text-align: center;
-    white-space: nowrap;
     pointer-events: none;
+    animation: doorLogoFadeIn 0.7s ease 0.2s both;
+}
+
+/* Glowing ring around logo */
+.door-logo-ring {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #C5A059, rgba(197,160,89,0.3), #C5A059);
+    box-shadow:
+        0 0 0 6px rgba(197, 160, 89, 0.15),
+        0 0 50px rgba(197, 160, 89, 0.55),
+        0 0 100px rgba(197, 160, 89, 0.25);
+    animation: splashRingPulse 2s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes splashRingPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 6px rgba(197,160,89,0.15), 0 0 50px rgba(197,160,89,0.5), 0 0 100px rgba(197,160,89,0.2);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(197,160,89,0.28), 0 0 70px rgba(197,160,89,0.85), 0 0 120px rgba(197,160,89,0.35);
+    }
 }
 
 .door-logo {
-    width: 130px;
-    height: 130px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid rgba(197, 160, 89, 0.9);
-    box-shadow:
-        0 0 0 8px rgba(197, 160, 89, 0.15),
-        0 0 50px rgba(197, 160, 89, 0.5),
-        0 20px 60px rgba(0, 0, 0, 0.8);
-    animation: splashLogoPulse 2s ease-in-out infinite;
-}
-
-@keyframes splashLogoPulse {
-    0%, 100% { box-shadow: 0 0 0 8px rgba(197,160,89,0.15), 0 0 50px rgba(197,160,89,0.45), 0 20px 60px rgba(0,0,0,0.8); }
-    50%       { box-shadow: 0 0 0 12px rgba(197,160,89,0.25), 0 0 70px rgba(197,160,89,0.70), 0 20px 60px rgba(0,0,0,0.8); }
+    border: 3px solid #0B1215;
+    display: block;
 }
 
 .door-brand-name {
     font-family: var(--font-en);
-    font-size: 1.9rem;
+    font-size: 2rem;
     font-weight: 800;
     letter-spacing: 3px;
-    background: linear-gradient(135deg, #F3EFE0 40%, #C5A059 100%);
+    background: linear-gradient(135deg, #F3EFE0 30%, #C5A059 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: none;
+    background-clip: text;
+    white-space: nowrap;
 }
 
 .door-brand-sub {
     font-family: var(--font-en);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 400;
-    color: var(--primary-color);
-    letter-spacing: 6px;
+    color: #C5A059;
+    letter-spacing: 7px;
     text-transform: uppercase;
     opacity: 0.9;
+    white-space: nowrap;
 }
 
-/* ---- Open state: panels fly apart ---- */
+/* Open: panels fly apart */
 .door-splash.open .door-left  { transform: translateX(-100%); }
 .door-splash.open .door-right { transform: translateX(100%); }
 
-/* ---- Hidden state: splash removed from layout after animation ---- */
+/* Logo fades + shrinks as door opens */
+.door-splash.open .door-logo-wrap {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* Hidden: remove from interactivity */
 .door-splash.hidden {
     pointer-events: none;
     visibility: hidden;
 }
 
-/* Fade-in for logo content on load */
-.door-logo-wrap {
-    animation: doorLogoFadeIn 0.8s ease 0.3s both;
-}
-
 @keyframes doorLogoFadeIn {
-    from { opacity: 0; transform: translate(50%, calc(-50% + 20px)); }
-    to   { opacity: 1; transform: translate(50%, -50%); }
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 24px)); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
 }
-
-
