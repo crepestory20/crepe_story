@@ -113,42 +113,164 @@ a {
 }
 
 /* ==========================================
-   BACKGROUND GLOWS
+   PREMIUM ANIMATED BACKGROUND SYSTEM
    ========================================== */
-.bg-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(140px);
-    z-index: -1;
+
+/* === Base Gradient Mesh === */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(197, 160, 89, 0.13) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30, 80, 110, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(120, 60, 20, 0.10) 0%, transparent 60%),
+        linear-gradient(160deg, #0B1215 0%, #0e1820 40%, #0B1215 100%);
     pointer-events: none;
-    opacity: 0.12;
 }
 
+/* === Animated Aurora Top === */
+body::after {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: -10%;
+    width: 120%;
+    height: 70%;
+    z-index: -2;
+    background: conic-gradient(
+        from 200deg at 50% 50%,
+        rgba(197, 160, 89, 0.0) 0deg,
+        rgba(197, 160, 89, 0.10) 60deg,
+        rgba(60, 120, 180, 0.08) 120deg,
+        rgba(197, 160, 89, 0.0) 180deg,
+        rgba(160, 80, 30, 0.07) 240deg,
+        rgba(197, 160, 89, 0.0) 360deg
+    );
+    filter: blur(60px);
+    animation: auroraRotate 18s linear infinite;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+@keyframes auroraRotate {
+    0%   { transform: rotate(0deg) scale(1.0); opacity: 0.7; }
+    50%  { transform: rotate(180deg) scale(1.15); opacity: 1; }
+    100% { transform: rotate(360deg) scale(1.0); opacity: 0.7; }
+}
+
+/* === Legacy bg-glow elements — now enhanced === */
+.bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Golden pulse blob — top center */
 .bg-glow-1 {
-    width: 450px;
-    height: 450px;
-    background: var(--primary-color);
-    top: -120px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.30) 0%, rgba(197, 100, 30, 0.12) 50%, transparent 75%);
+    top: -180px;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.22;
+    filter: blur(80px);
+    animation: blobPulse1 8s ease-in-out infinite;
 }
 
+@keyframes blobPulse1 {
+    0%, 100% { transform: translateX(-50%) scale(1);   opacity: 0.65; }
+    50%       { transform: translateX(-50%) scale(1.18); opacity: 1.0; }
+}
+
+/* Teal deep blob — mid right */
 .bg-glow-2 {
-    width: 350px;
-    height: 350px;
-    background: #172F3A;
-    top: 35%;
-    right: -100px;
-}
-
-.bg-glow-3 {
     width: 400px;
     height: 400px;
-    background: var(--primary-color);
-    bottom: -150px;
-    left: -150px;
+    background: radial-gradient(circle, rgba(20, 90, 130, 0.28) 0%, transparent 70%);
+    top: 38%;
+    right: -120px;
+    filter: blur(90px);
+    animation: blobPulse2 11s ease-in-out infinite;
 }
+
+@keyframes blobPulse2 {
+    0%, 100% { transform: scale(1) translateY(0);    opacity: 0.55; }
+    50%       { transform: scale(1.22) translateY(-30px); opacity: 0.85; }
+}
+
+/* Amber warm blob — bottom left */
+.bg-glow-3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(180, 100, 30, 0.22) 0%, rgba(197, 160, 89, 0.10) 40%, transparent 70%);
+    bottom: -180px;
+    left: -130px;
+    filter: blur(100px);
+    animation: blobPulse3 13s ease-in-out infinite;
+}
+
+@keyframes blobPulse3 {
+    0%, 100% { transform: scale(1) rotate(0deg);    opacity: 0.50; }
+    50%       { transform: scale(1.15) rotate(15deg); opacity: 0.80; }
+}
+
+/* === Floating Bokeh Stars === */
+.bokeh-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bokeh-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(197, 160, 89, 0.55);
+    box-shadow: 0 0 12px 4px rgba(197, 160, 89, 0.35);
+    animation: bokehFloat linear infinite;
+    opacity: 0;
+}
+
+/* Individual bokeh sizes & positions */
+.bokeh-dot:nth-child(1)  { width:4px;  height:4px;  left:8%;   animation-duration:14s; animation-delay:0s;   }
+.bokeh-dot:nth-child(2)  { width:3px;  height:3px;  left:18%;  animation-duration:18s; animation-delay:2s;   }
+.bokeh-dot:nth-child(3)  { width:5px;  height:5px;  left:30%;  animation-duration:11s; animation-delay:4s;   }
+.bokeh-dot:nth-child(4)  { width:2px;  height:2px;  left:45%;  animation-duration:20s; animation-delay:1s;   }
+.bokeh-dot:nth-child(5)  { width:4px;  height:4px;  left:60%;  animation-duration:16s; animation-delay:6s;   }
+.bokeh-dot:nth-child(6)  { width:3px;  height:3px;  left:72%;  animation-duration:13s; animation-delay:3s;   }
+.bokeh-dot:nth-child(7)  { width:5px;  height:5px;  left:85%;  animation-duration:19s; animation-delay:7s;   }
+.bokeh-dot:nth-child(8)  { width:2px;  height:2px;  left:55%;  animation-duration:22s; animation-delay:5s;   }
+.bokeh-dot:nth-child(9)  { width:3px;  height:3px;  left:25%;  animation-duration:17s; animation-delay:9s;   }
+.bokeh-dot:nth-child(10) { width:4px;  height:4px;  left:90%;  animation-duration:12s; animation-delay:2.5s; }
+.bokeh-dot:nth-child(11) { width:2px;  height:2px;  left:40%;  animation-duration:21s; animation-delay:8s;   background: rgba(100,180,220,0.5); box-shadow: 0 0 10px 3px rgba(100,180,220,0.3); }
+.bokeh-dot:nth-child(12) { width:3px;  height:3px;  left:70%;  animation-duration:15s; animation-delay:11s;  background: rgba(220,160,80,0.6);  box-shadow: 0 0 10px 3px rgba(220,160,80,0.4); }
+
+@keyframes bokehFloat {
+    0%   { transform: translateY(110vh) scale(0.5); opacity: 0;   }
+    10%  { opacity: 0.9; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* === Scanline Texture Overlay === */
+.bg-scanline {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+    );
+}
+
 
 /* ==========================================
    STICKY LANGUAGE TOGGLE
@@ -2451,5 +2573,136 @@ body[dir="ltr"] .chip-card.selected::after {
     }
 }
 
+
+/* ==========================================
+   DOOR SPLASH SCREEN
+   ========================================== */
+
+/* Overlay that blocks scrolling while splash is active */
+.door-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    pointer-events: all;
+    overflow: hidden;
+}
+
+/* Both panels share base styles */
+.door-panel {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: #0B1215;
+    flex-shrink: 0;
+    will-change: transform;
+    transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: hidden;
+}
+
+/* Subtle gold shimmer on each panel */
+.door-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(197, 160, 89, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 50% 80%, rgba(197, 160, 89, 0.08) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+/* Thin golden center seam (visible between the two panels) */
+.door-left::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(197, 160, 89, 0.8) 20%,
+        rgba(255, 220, 130, 1) 50%,
+        rgba(197, 160, 89, 0.8) 80%,
+        transparent 100%);
+    z-index: 2;
+}
+
+/* ---- Logo wrap sits centered across both panels ---- */
+.door-logo-wrap {
+    position: absolute;
+    /* Center horizontally: left panel is 50% wide, so the center of the screen
+       is at the far right edge of the left panel → right: 0; then push via transform */
+    top: 50%;
+    right: -50vw; /* reaches the center of the viewport */
+    transform: translate(50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    z-index: 10;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.door-logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(197, 160, 89, 0.9);
+    box-shadow:
+        0 0 0 8px rgba(197, 160, 89, 0.15),
+        0 0 50px rgba(197, 160, 89, 0.5),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: splashLogoPulse 2s ease-in-out infinite;
+}
+
+@keyframes splashLogoPulse {
+    0%, 100% { box-shadow: 0 0 0 8px rgba(197,160,89,0.15), 0 0 50px rgba(197,160,89,0.45), 0 20px 60px rgba(0,0,0,0.8); }
+    50%       { box-shadow: 0 0 0 12px rgba(197,160,89,0.25), 0 0 70px rgba(197,160,89,0.70), 0 20px 60px rgba(0,0,0,0.8); }
+}
+
+.door-brand-name {
+    font-family: var(--font-en);
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #F3EFE0 40%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.door-brand-sub {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* ---- Open state: panels fly apart ---- */
+.door-splash.open .door-left  { transform: translateX(-100%); }
+.door-splash.open .door-right { transform: translateX(100%); }
+
+/* ---- Hidden state: splash removed from layout after animation ---- */
+.door-splash.hidden {
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Fade-in for logo content on load */
+.door-logo-wrap {
+    animation: doorLogoFadeIn 0.8s ease 0.3s both;
+}
+
+@keyframes doorLogoFadeIn {
+    from { opacity: 0; transform: translate(50%, calc(-50% + 20px)); }
+    to   { opacity: 1; transform: translate(50%, -50%); }
+}
 
 

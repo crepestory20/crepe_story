@@ -163,6 +163,26 @@ function bindOrderButtons() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
+    // 0a. DOOR SPLASH SCREEN
+    // ==========================================
+    const splash = document.getElementById('door-splash');
+    if (splash) {
+        // Prevent scrolling while splash is open
+        document.body.style.overflow = 'hidden';
+
+        // After 1.8s → trigger the door-open animation
+        setTimeout(() => {
+            splash.classList.add('open');
+
+            // After animation finishes (1.1s transition) → hide the overlay
+            setTimeout(() => {
+                splash.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 1150);
+        }, 1800);
+    }
+
+    // ==========================================
     // 0. THEME COLOR SWITCHER
     // ==========================================
     const THEMES = {
