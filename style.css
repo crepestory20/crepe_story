@@ -2714,4 +2714,221 @@ body[dir="ltr"] .chip-card.selected::after {
     visibility: hidden;
 }
 
+/* ==========================================
+   2026 ULTRA LUXURY DESIGN SYSTEM ENHANCEMENTS
+   ========================================== */
+
+/* === Store Status Badge === */
+.restaurant-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #34d399;
+    margin-bottom: 16px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: statusPulse 1.8s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.5; }
+}
+
+/* === Live Search Bar === */
+.search-container {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto 24px auto;
+    position: relative;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    pointer-events: none;
+}
+
+body[data-lang="ar"] .search-icon { right: 16px; }
+body[data-lang="en"] .search-icon { left: 16px; }
+
+.menu-search-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 50px;
+    color: var(--text-white);
+    font-size: 0.95rem;
+    padding: 14px 20px;
+    transition: var(--transition-smooth);
+    outline: none;
+    box-shadow: var(--card-shadow);
+}
+
+body[data-lang="ar"] .menu-search-input {
+    padding-right: 48px;
+    padding-left: 20px;
+    font-family: var(--font-ar);
+}
+
+body[data-lang="en"] .menu-search-input {
+    padding-left: 48px;
+    padding-right: 20px;
+    font-family: var(--font-en);
+}
+
+.menu-search-input:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.35);
+}
+
+/* === Item Badges === */
+.badge-tag {
+    position: absolute;
+    top: 8px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.3px;
+}
+
+body[data-lang="ar"] .badge-tag { left: 8px; }
+body[data-lang="en"] .badge-tag { right: 8px; }
+
+.badge-hot {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: #ffffff;
+}
+
+.badge-star {
+    background: linear-gradient(135deg, #f7b733, #fc4a1a);
+    color: #ffffff;
+}
+
+/* === Floating Order Cart Badge === */
+.floating-cart-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    z-index: 999;
+    background: linear-gradient(135deg, #C5A059 0%, #e8c97a 50%, #C5A059 100%);
+    color: #0b1215;
+    padding: 12px 24px;
+    border-radius: 40px;
+    box-shadow: 0 8px 32px rgba(197, 160, 89, 0.5), 0 2px 10px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.floating-cart-btn.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.floating-cart-btn:hover {
+    transform: translateX(-50%) translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(197, 160, 89, 0.7);
+}
+
+.cart-count-badge {
+    background: #0b1215;
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+/* === Builder Step Indicator === */
+.builder-steps-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 24px;
+    position: relative;
+    padding: 0 10px;
+}
+
+.builder-steps-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.step-node {
+    position: relative;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 2px solid var(--glass-border);
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.step-node.active {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: #0b1215;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+}
+
+
 

@@ -55,13 +55,42 @@ const MENU_DATA = [
     { cat: 'syrian', name: 'بطاطس إستريس', eng: 'Stress Fries', price: '75 EGP', desc: 'بطاطس مع تشكيلة مميزة', img: 'assets/savory_crepe.png' },
 ];
 
-function renderMenu(category) {
+function renderMenu(category, searchQuery = '') {
     const grid = document.getElementById('menu-grid');
     if (!grid) return;
-    const items = MENU_DATA.filter(i => i.cat === category);
+
+    let items = MENU_DATA;
+    if (searchQuery.trim() !== '') {
+        const query = searchQuery.trim().toLowerCase();
+        items = MENU_DATA.filter(i => 
+            i.name.toLowerCase().includes(query) || 
+            i.eng.toLowerCase().includes(query) ||
+            i.desc.toLowerCase().includes(query)
+        );
+    } else if (category) {
+        items = MENU_DATA.filter(i => i.cat === category);
+    }
+
+    if (items.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-gray);">
+                <p class="lang-ar">عذراً، لم نجد أصنافا تطابق بحثك 🔍</p>
+                <p class="lang-en">No items found matching your search 🔍</p>
+            </div>
+        `;
+        return;
+    }
+
     grid.innerHTML = items.map(item => {
         const hasSizes = item.price.includes('وسط') || item.price.includes('كبير');
         let orderBtnHtml = '';
+
+        let badgeHtml = '';
+        if (item.name.includes('زنجر') || item.name.includes('الوحش') || item.name.includes('نيوتيلا')) {
+            badgeHtml = `<span class="badge-tag badge-hot"><span class="lang-ar">🔥 الأكثر طلباً</span><span class="lang-en">🔥 Popular</span></span>`;
+        } else if (item.name.includes('إستوري') || item.name.includes('الصاروخ')) {
+            badgeHtml = `<span class="badge-tag badge-star"><span class="lang-ar">⭐ مميز</span><span class="lang-en">⭐ Special</span></span>`;
+        }
 
         if (hasSizes) {
             orderBtnHtml = `
@@ -87,6 +116,7 @@ function renderMenu(category) {
 
         return `
       <div class="menu-item-card" data-category="${item.cat}">
+        ${badgeHtml}
         <div class="item-img-wrapper"><img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'"></div>
         <div class="item-details">
           <h3 class="item-name">${item.name}</h3>
@@ -369,9 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 3. DIGITAL MENU CATEGORY TABS
+    // 3. DIGITAL MENU CATEGORY TABS & LIVE SEARCH
     // ==========================================
     const tabButtons = document.querySelectorAll('.tab-btn');
+    const searchInput = document.getElementById('menu-search-input');
 
     // Initial render
     renderMenu('chicken');
@@ -380,9 +411,28 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             tabButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            if (searchInput) searchInput.value = '';
             renderMenu(btn.getAttribute('data-category'));
         });
     });
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const activeTab = document.querySelector('.tab-btn.active');
+            const activeCategory = activeTab ? activeTab.getAttribute('data-category') : 'chicken';
+            renderMenu(query ? '' : activeCategory, query);
+        });
+    }
+
+    // Floating Cart visibility handler
+    const floatingCart = document.getElementById('floating-cart-btn');
+    if (floatingCart) {
+        const storedItem = localStorage.getItem('selectedMenuItem');
+        if (storedItem) {
+            floatingCart.classList.add('visible');
+        }
+    }
     // ==========================================
     // 4. WHATSAPP FORM SUBMISSION
     // ==========================================

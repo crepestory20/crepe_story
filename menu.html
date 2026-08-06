@@ -115,6 +115,16 @@
                 <span class="lang-en">Our Digital Menu 📖</span>
             </h2>
 
+            <!-- Live Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="menu-search-input" class="menu-search-input" 
+                           placeholder="ابحث عن أصنافك المفضلة... | Search menu..." 
+                           autocomplete="off">
+                </div>
+            </div>
+
             <!-- Menu Tabs -->
             <div class="menu-tabs">
                 <button class="tab-btn active" data-category="chicken">
@@ -157,6 +167,14 @@
             </div>
         </section>
     </div>
+
+    <!-- Floating Quick Order Cart Button -->
+    <a href="order.html" id="floating-cart-btn" class="floating-cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="lang-ar">متابعة إتمام الطلب</span>
+        <span class="lang-en">Complete Order</span>
+        <span class="cart-count-badge" id="cart-count-badge">1</span>
+    </a>
 
     <script src="script.js?v=5"></script>
 </body>
