@@ -1,4 +1,4 @@
-const CACHE_NAME = 'crepe-story-v1';
+const CACHE_NAME = 'crepe-story-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
