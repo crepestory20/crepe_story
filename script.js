@@ -678,3 +678,69 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// ==========================================
+// 8. PWA SERVICE WORKER REGISTRATION & INSTALL PROMPT
+// ==========================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then((reg) => console.log('PWA Service Worker registered successfully with scope:', reg.scope))
+            .catch((err) => console.warn('PWA Service Worker registration failed:', err));
+    });
+}
+
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showPwaInstallBanner();
+});
+
+function showPwaInstallBanner() {
+    if (document.getElementById('pwa-install-banner')) return;
+
+    const isAr = (localStorage.getItem('crepe_story_lang') || 'ar') === 'ar';
+    const banner = document.createElement('div');
+    banner.id = 'pwa-install-banner';
+    banner.className = 'pwa-install-banner';
+
+    banner.innerHTML = `
+        <div class="pwa-banner-info">
+            <img src="logo.jpg" alt="Crêpe Story Logo" class="pwa-banner-icon">
+            <div class="pwa-banner-text">
+                <span class="pwa-banner-title">${isAr ? 'تطبيق كريب ستوري 📱' : 'Crêpe Story App 📱'}</span>
+                <span class="pwa-banner-sub">${isAr ? 'ثبّت التطبيق على هاتفك لطلب أسرع' : 'Install app on your phone for quick orders'}</span>
+            </div>
+        </div>
+        <div class="pwa-banner-actions">
+            <button class="btn-pwa-install" id="btn-pwa-install-action">
+                ${isAr ? 'تثبيت الآن' : 'Install'}
+            </button>
+            <button class="btn-pwa-close" id="btn-pwa-close-action" title="إغلاق">&times;</button>
+        </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+        banner.classList.add('show');
+    }, 1000);
+
+    document.getElementById('btn-pwa-install-action').addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`PWA install outcome: ${outcome}`);
+            deferredPrompt = null;
+        }
+        banner.classList.remove('show');
+        setTimeout(() => banner.remove(), 400);
+    });
+
+    document.getElementById('btn-pwa-close-action').addEventListener('click', () => {
+        banner.classList.remove('show');
+        setTimeout(() => banner.remove(), 400);
+    });
+}
