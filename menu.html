@@ -19,7 +19,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=5">
     <style>
         .menu-page-container {
             max-width: 1200px;
@@ -88,24 +88,23 @@
         </button>
     </div>
 
-    <!-- Theme Color Switcher (Backgrounds 1, 2, 3) -->
+    <!-- Theme Color Switcher -->
     <div class="theme-switcher" id="theme-switcher">
-        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير خلفية الموقع">🎨</button>
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="تغيير لون الخلفية">🎨</button>
         <div class="theme-dots" id="theme-dots">
-            <button class="theme-dot active" data-theme="cinematic">🎬 1. سينمائي</button>
-            <button class="theme-dot" data-theme="pattern">🍕 2. نقشة</button>
-            <button class="theme-dot" data-theme="neon">💡 3. نيون</button>
+            <button class="theme-dot active" data-theme="midnight" style="background:#0B1215;" title="Midnight"></button>
+            <button class="theme-dot" data-theme="ocean"    style="background:#0D1B2A;" title="Ocean"></button>
+            <button class="theme-dot" data-theme="forest"   style="background:#0A1A0F;" title="Forest"></button>
+            <button class="theme-dot" data-theme="espresso" style="background:#1A0F0A;" title="Espresso"></button>
+            <button class="theme-dot" data-theme="plum"     style="background:#160D24;" title="Plum"></button>
+            <button class="theme-dot" data-theme="slate"    style="background:#141820;" title="Slate"></button>
         </div>
     </div>
 
-    <!-- Dynamic Background Layers for Themes 1, 2, 3 -->
-    <div class="bg-layer bg-layer-cinematic"></div>
-    <div class="bg-layer bg-layer-pattern"></div>
-    <div class="bg-layer bg-layer-neon">
-        <div class="bg-glow bg-glow-1"></div>
-        <div class="bg-glow bg-glow-2"></div>
-        <div class="bg-glow bg-glow-3"></div>
-    </div>
+    <!-- Luxury Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
 
     <div class="menu-page-container">
         <!-- Back Button -->
@@ -184,6 +183,6 @@
         <span class="cart-count-badge" id="cart-count-badge">1</span>
     </a>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>
