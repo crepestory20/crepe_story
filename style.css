@@ -1711,61 +1711,57 @@ body[data-lang="en"] .social-card:hover .card-arrow {
     /* Digital Menu Mobile Optimization */
     .menu-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: 10px;
+        width: 100%;
     }
 
     .menu-tabs {
-        margin-bottom: 12px;
-        gap: 5px;
-        padding-bottom: 8px;
+        margin-bottom: 16px;
+        gap: 8px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
     }
 
     .tab-btn {
-        padding: 5px 8px;
-        font-size: 0.68rem;
-        border-radius: 16px;
-        border: 1px solid rgba(197, 160, 89, 0.2);
+        padding: 8px 14px;
+        font-size: 0.78rem;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        white-space: nowrap;
     }
     
     .menu-item-card {
-        padding: 6px 4px;
-        border-radius: 8px;
-        gap: 4px;
-        border: 1px solid rgba(197, 160, 89, 0.1);
-    }
-    
-    .item-img-wrapper {
-        width: 48px;
-        height: 48px;
-    }
-    
-    body[data-lang="ar"] .item-img-wrapper,
-    body[data-lang="en"] .item-img-wrapper {
-        margin: 0;
-    }
-    
-    .item-header {
-        margin-bottom: 1px;
-        gap: 1px;
+        padding: 10px 8px;
+        border-radius: 12px;
+        gap: 6px;
+        border: 1px solid var(--glass-border);
+        background: rgba(255, 255, 255, 0.025);
     }
 
-    .item-header h3 {
-        font-size: 0.68rem;
+    .item-name {
+        font-size: 0.84rem;
+        font-weight: 700;
     }
     
     .item-price {
-        font-size: 0.6rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--secondary-color);
     }
 
-    .item-details p {
-        font-size: 0.55rem;
-        line-height: 1.2;
-        margin-bottom: 2px;
+    .item-details p,
+    .item-desc {
+        font-size: 0.68rem;
+        line-height: 1.35;
+        margin-bottom: 4px;
+        opacity: 0.9;
     }
 
     .btn-select-order {
-        padding: 2px 3px;
-        font-size: 0.55rem;
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        font-weight: 700;
     }
 
     .order-buttons-group {

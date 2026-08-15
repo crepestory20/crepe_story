@@ -67,7 +67,7 @@ function renderMenu(category, searchQuery = '') {
             i.eng.toLowerCase().includes(query) ||
             i.desc.toLowerCase().includes(query)
         );
-    } else if (category) {
+    } else if (category && category !== 'all') {
         items = MENU_DATA.filter(i => i.cat === category);
     }
 
@@ -403,8 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const searchInput = document.getElementById('menu-search-input');
 
-    // Initial render
-    renderMenu('chicken');
+    // Initial render - Show ALL menu items by default for mobile
+    renderMenu('all');
 
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value;
             const activeTab = document.querySelector('.tab-btn.active');
-            const activeCategory = activeTab ? activeTab.getAttribute('data-category') : 'chicken';
+            const activeCategory = activeTab ? activeTab.getAttribute('data-category') : 'all';
             renderMenu(query ? '' : activeCategory, query);
         });
     }
