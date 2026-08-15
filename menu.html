@@ -22,16 +22,17 @@
     <link rel="stylesheet" href="style.css?v=5">
     <style>
         .menu-page-container {
-            max-width: 1200px;
+            max-width: 1050px;
+            width: 100%;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 24px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
         .back-btn-container {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             width: 100%;
             display: flex;
             justify-content: flex-start;
@@ -40,20 +41,21 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-white);
             text-decoration: none;
             font-weight: 700;
+            font-size: 0.88rem;
             transition: var(--transition-smooth);
             box-shadow: var(--card-shadow);
         }
         .btn-back:hover {
             background: var(--glass-border-hover);
             transform: translateX(-5px);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+            box-shadow: 0 0 15px rgba(232, 93, 4, 0.3);
         }
         body[dir="ltr"] .btn-back:hover {
             transform: translateX(5px);
@@ -66,15 +68,15 @@
         }
         @media (max-width: 480px) {
             .menu-page-container {
-                padding: 16px 4px;
+                padding: 16px 10px;
             }
             .back-btn-container {
-                margin-bottom: 12px;
-                padding: 0 2px;
+                margin-bottom: 14px;
+                padding: 0;
             }
             .btn-back {
-                padding: 6px 12px;
-                font-size: 0.75rem;
+                padding: 7px 14px;
+                font-size: 0.78rem;
             }
         }
     </style>
