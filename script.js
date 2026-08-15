@@ -56,8 +56,8 @@ const MENU_DATA = [
 ];
 
 function renderMenu(category, searchQuery = '') {
-    const grid = document.getElementById('menu-grid');
-    if (!grid) return;
+    const grids = document.querySelectorAll('.menu-grid, #menu-grid');
+    if (!grids.length) return;
 
     let items = MENU_DATA;
     if (searchQuery.trim() !== '') {
@@ -72,16 +72,18 @@ function renderMenu(category, searchQuery = '') {
     }
 
     if (items.length === 0) {
-        grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-gray);">
-                <p class="lang-ar">عذراً، لم نجد أصنافا تطابق بحثك 🔍</p>
-                <p class="lang-en">No items found matching your search 🔍</p>
-            </div>
-        `;
+        grids.forEach(grid => {
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-gray);">
+                    <p class="lang-ar">عذراً، لم نجد أصنافا تطابق بحثك 🔍</p>
+                    <p class="lang-en">No items found matching your search 🔍</p>
+                </div>
+            `;
+        });
         return;
     }
 
-    grid.innerHTML = items.map(item => {
+    const htmlContent = items.map(item => {
         const hasSizes = item.price.includes('وسط') || item.price.includes('كبير');
         let orderBtnHtml = '';
 
@@ -126,6 +128,11 @@ function renderMenu(category, searchQuery = '') {
       </div>
     `;
     }).join('');
+
+    grids.forEach(grid => {
+        grid.innerHTML = htmlContent;
+    });
+
     // Re-bind order buttons after render
     bindOrderButtons();
 }
@@ -401,28 +408,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. DIGITAL MENU CATEGORY TABS & LIVE SEARCH
     // ==========================================
     const tabButtons = document.querySelectorAll('.tab-btn');
-    const searchInput = document.getElementById('menu-search-input');
+    const searchInputs = document.querySelectorAll('.menu-search-input');
 
     // Initial render - Show ALL menu items by default for mobile
     renderMenu('all');
 
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            tabButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (searchInput) searchInput.value = '';
-            renderMenu(btn.getAttribute('data-category'));
+            const cat = btn.getAttribute('data-category');
+            tabButtons.forEach(b => {
+                if (b.getAttribute('data-category') === cat) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+            searchInputs.forEach(input => input.value = '');
+            renderMenu(cat);
         });
     });
 
-    if (searchInput) {
+    searchInputs.forEach(searchInput => {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value;
             const activeTab = document.querySelector('.tab-btn.active');
             const activeCategory = activeTab ? activeTab.getAttribute('data-category') : 'all';
             renderMenu(query ? '' : activeCategory, query);
         });
-    }
+    });
 
     // Floating Cart visibility handler
     const floatingCart = document.getElementById('floating-cart-btn');
