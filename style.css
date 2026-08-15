@@ -3165,6 +3165,175 @@ body[data-lang="en"] .badge-tag { right: 8px; }
     color: #ff4d4d;
 }
 
+/* ==========================================
+   DYNAMIC BACKGROUND THEMES (1: CINEMATIC, 2: PATTERN, 3: NEON)
+   ========================================== */
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -2;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+/* Theme 1: Cinematic Luxury Photo Background */
+.bg-layer-cinematic {
+    background: linear-gradient(180deg, rgba(11, 18, 21, 0.82) 0%, rgba(11, 18, 21, 0.92) 100%),
+                url('assets/crepe_bg_luxury.png') no-repeat center center / cover;
+}
+
+/* Theme 2: Subtle Food Line Pattern Background */
+.bg-layer-pattern {
+    background-color: #0c0d10;
+    background-image: radial-gradient(circle at 50% 50%, rgba(232, 93, 4, 0.12) 0%, rgba(0, 0, 0, 0.88) 100%),
+                      url('assets/food_pattern_dark.png');
+    background-repeat: repeat;
+    background-size: 280px 280px;
+}
+
+/* Theme 3: Dynamic Floating Neon Glow Orbs */
+.bg-layer-neon {
+    background: #09090b;
+    overflow: hidden;
+}
+
+.bg-layer-neon .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.45;
+    animation: floatGlow 12s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.bg-layer-neon .bg-glow-1 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(232, 93, 4, 0.6) 0%, rgba(232, 93, 4, 0) 70%);
+    top: -100px;
+    right: -100px;
+}
+
+.bg-layer-neon .bg-glow-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 183, 3, 0.5) 0%, rgba(255, 183, 3, 0) 70%);
+    bottom: -150px;
+    left: -150px;
+    animation-delay: -4s;
+}
+
+.bg-layer-neon .bg-glow-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(208, 0, 0, 0.4) 0%, rgba(208, 0, 0, 0) 70%);
+    top: 40%;
+    left: 30%;
+    animation-delay: -8s;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -40px) scale(1.15); }
+    100% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+/* Active Theme States */
+body.theme-bg-cinematic .bg-layer-cinematic { opacity: 1; }
+body.theme-bg-pattern .bg-layer-pattern { opacity: 1; }
+body.theme-bg-neon .bg-layer-neon { opacity: 1; }
+
+/* ==========================================
+   THEME SWITCHER UI FLOATING BAR
+   ========================================== */
+.theme-switcher {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-toggle-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid var(--primary-color, #e85d04);
+    color: var(--secondary-color, #ffb703);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(232, 93, 4, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 0 20px rgba(232, 93, 4, 0.5);
+}
+
+.theme-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(18, 18, 18, 0.92);
+    border: 1px solid rgba(232, 93, 4, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 6px 10px;
+    border-radius: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-15px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.theme-dots.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.theme-dot {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #a0a0a0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    font-family: var(--font-ar, 'Cairo', sans-serif);
+}
+
+.theme-dot:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dot.active {
+    background: linear-gradient(135deg, #e85d04 0%, #ffb703 100%);
+    color: #0b1215;
+    box-shadow: 0 0 12px rgba(232, 93, 4, 0.4);
+}
+
+
 
 
 

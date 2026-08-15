@@ -279,55 +279,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 0. THEME COLOR SWITCHER
+    // 0. DYNAMIC BACKGROUND THEME SWITCHER (1: CINEMATIC, 2: PATTERN, 3: NEON)
     // ==========================================
-    const THEMES = {
-        midnight: { bg: '#0B1215', glow1: 'rgba(197,160,89,0.22)', glow2: '#172F3A', glow3: 'rgba(197,160,89,0.1)' },
-        ocean: { bg: '#0D1B2A', glow1: 'rgba(30,90,160,0.25)', glow2: '#0A2240', glow3: 'rgba(197,160,89,0.1)' },
-        forest: { bg: '#0A1A0F', glow1: 'rgba(30,120,60,0.25)', glow2: '#102010', glow3: 'rgba(197,160,89,0.1)' },
-        espresso: { bg: '#1A0F0A', glow1: 'rgba(160,80,30,0.25)', glow2: '#2C1810', glow3: 'rgba(197,160,89,0.1)' },
-        plum: { bg: '#160D24', glow1: 'rgba(120,40,180,0.25)', glow2: '#1E0F2E', glow3: 'rgba(197,160,89,0.1)' },
-        slate: { bg: '#141820', glow1: 'rgba(80,100,140,0.22)', glow2: '#1C2028', glow3: 'rgba(197,160,89,0.1)' },
-    };
+    const applyBgTheme = (themeName) => {
+        const validThemes = ['cinematic', 'pattern', 'neon'];
+        const activeTheme = validThemes.includes(themeName) ? themeName : 'cinematic';
 
-    const applyTheme = (themeName) => {
-        const t = THEMES[themeName];
-        if (!t) return;
-        const root = document.documentElement;
-        root.style.setProperty('--bg-color', t.bg);
-        document.body.style.backgroundColor = t.bg;
-        document.documentElement.style.backgroundColor = t.bg;
+        // Set body class for background layers
+        document.body.classList.remove('theme-bg-cinematic', 'theme-bg-pattern', 'theme-bg-neon');
+        document.body.classList.add(`theme-bg-${activeTheme}`);
+
         // Save preference
-        localStorage.setItem('crepe_story_theme', themeName);
-        // Update active dot
-        document.querySelectorAll('.theme-dot').forEach(d => {
-            d.classList.toggle('active', d.getAttribute('data-theme') === themeName);
+        localStorage.setItem('crepe_story_bg_theme', activeTheme);
+
+        // Update active theme-dot button
+        document.querySelectorAll('.theme-dot').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-theme') === activeTheme);
         });
     };
 
-    // Bind theme dots
+    // Bind click events on theme dots
     document.querySelectorAll('.theme-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-            applyTheme(dot.getAttribute('data-theme'));
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chosenTheme = dot.getAttribute('data-theme');
+            applyBgTheme(chosenTheme);
         });
     });
 
     // Toggle open/close on palette button click
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const themeDots = document.getElementById('theme-dots');
-    themeToggleBtn.addEventListener('click', () => {
-        themeDots.classList.toggle('open');
-    });
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!document.getElementById('theme-switcher').contains(e.target)) {
-            themeDots.classList.remove('open');
-        }
-    });
+    if (themeToggleBtn && themeDots) {
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeDots.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            const switcher = document.getElementById('theme-switcher');
+            if (switcher && !switcher.contains(e.target)) {
+                themeDots.classList.remove('open');
+            }
+        });
+    }
 
-    // Restore saved theme
-    const savedTheme = localStorage.getItem('crepe_story_theme') || 'midnight';
-    applyTheme(savedTheme);
+    // Restore saved theme preference (default to 'cinematic')
+    const savedBgTheme = localStorage.getItem('crepe_story_bg_theme') || 'cinematic';
+    applyBgTheme(savedBgTheme);
 
     // ==========================================
     // 1. LANGUAGE SWITCHING SYSTEM
