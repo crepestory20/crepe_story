@@ -86,7 +86,7 @@ html {
 
 body {
     color: var(--text-white);
-    background-color: var(--bg-color);
+    background-color: transparent !important;
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
@@ -3175,21 +3175,31 @@ body[data-lang="en"] .badge-tag { right: 8px; }
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: -2;
+    z-index: 0;
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
 }
 
+/* Elevate main UI components above background layers */
+.container,
+.menu-page-container,
+.order-page-container,
+.lang-switch-container,
+.theme-switcher {
+    position: relative;
+    z-index: 2;
+}
+
 /* Theme 1: Cinematic Luxury Photo Background */
 .bg-layer-cinematic {
-    background: linear-gradient(180deg, rgba(11, 18, 21, 0.82) 0%, rgba(11, 18, 21, 0.92) 100%),
+    background: linear-gradient(180deg, rgba(11, 18, 21, 0.75) 0%, rgba(11, 18, 21, 0.88) 100%),
                 url('assets/crepe_bg_luxury.png') no-repeat center center / cover;
 }
 
 /* Theme 2: Subtle Food Line Pattern Background */
 .bg-layer-pattern {
     background-color: #0c0d10;
-    background-image: radial-gradient(circle at 50% 50%, rgba(232, 93, 4, 0.12) 0%, rgba(0, 0, 0, 0.88) 100%),
+    background-image: radial-gradient(circle at 50% 50%, rgba(232, 93, 4, 0.15) 0%, rgba(0, 0, 0, 0.88) 100%),
                       url('assets/food_pattern_dark.png');
     background-repeat: repeat;
     background-size: 280px 280px;
@@ -3242,9 +3252,9 @@ body[data-lang="en"] .badge-tag { right: 8px; }
 }
 
 /* Active Theme States */
-body.theme-bg-cinematic .bg-layer-cinematic { opacity: 1; }
-body.theme-bg-pattern .bg-layer-pattern { opacity: 1; }
-body.theme-bg-neon .bg-layer-neon { opacity: 1; }
+body.theme-bg-cinematic .bg-layer-cinematic { opacity: 1 !important; }
+body.theme-bg-pattern .bg-layer-pattern { opacity: 1 !important; }
+body.theme-bg-neon .bg-layer-neon { opacity: 1 !important; }
 
 /* ==========================================
    THEME SWITCHER UI FLOATING BAR
