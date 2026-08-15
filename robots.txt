@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://crepestory.netlify.app/sitemap.xml
+Sitemap: https://thunderous-piroshki-b74b4e.netlify.app/sitemap.xml
