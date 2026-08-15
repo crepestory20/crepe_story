@@ -118,8 +118,8 @@ function renderMenu(category, searchQuery = '') {
 
         return `
       <div class="menu-item-card" data-category="${item.cat}">
-        ${badgeHtml}
         <div class="item-details">
+          ${badgeHtml}
           <h3 class="item-name">${item.name}</h3>
           <span class="item-price">${item.price}</span>
           <p class="item-desc">${item.desc}</p>
