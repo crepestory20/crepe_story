@@ -89,9 +89,11 @@ function renderMenu(category, searchQuery = '') {
 
         let badgeHtml = '';
         if (item.name.includes('زنجر') || item.name.includes('الوحش') || item.name.includes('نيوتيلا')) {
-            badgeHtml = `<span class="badge-tag badge-hot"><span class="lang-ar">🔥 الأكثر طلباً</span><span class="lang-en">🔥 Popular</span></span>`;
+            badgeHtml = `<div class="item-badge-wrapper"><span class="badge-tag badge-hot"><span class="lang-ar">🔥 الأكثر طلباً</span><span class="lang-en">🔥 Popular</span></span></div>`;
         } else if (item.name.includes('إستوري') || item.name.includes('الصاروخ')) {
-            badgeHtml = `<span class="badge-tag badge-star"><span class="lang-ar">⭐ مميز</span><span class="lang-en">⭐ Special</span></span>`;
+            badgeHtml = `<div class="item-badge-wrapper"><span class="badge-tag badge-star"><span class="lang-ar">⭐ مميز</span><span class="lang-en">⭐ Special</span></span></div>`;
+        } else {
+            badgeHtml = `<div class="item-badge-wrapper empty-badge"></div>`;
         }
 
         if (hasSizes) {
